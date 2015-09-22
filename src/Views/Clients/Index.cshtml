@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ABC_Inventory.Client>
+
+@{
+    ViewBag.Title = "Clients List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.title</h2>
+
+<p>
+    @Html.ActionLink("Register New Client", "RegisterView")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Clientname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CageCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SICCode)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CompanyType)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clientname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CageCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SICCode)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CompanyType)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "RegisterView", new { id=item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @if ((bool)item.InActive)
+            {
+            @Html.ActionLink("Activate", "Activate", new { id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivate", "InActivate", new { id = item.Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>

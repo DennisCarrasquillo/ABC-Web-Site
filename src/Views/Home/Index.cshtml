@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>ABC Inventory Management System ... as easy as ABC</h2>
+    
+    <p>This Next Generation Inventory Management System is an Integrated Suite of Tools that will Enhance and Simplify your Product Management Process.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p><h3><a href="@Url.Action("Index", "Home")"></a></h3></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Item Management</h2>
+        <p>
+            Manage the items you sell whether you own them, they are on consignment, or are your supplier's excess inventory.
+        </p>
+       @Html.ActionLink("Learn more about Item Management", "Item", "Home")
+    </div>
+    <div class="col-md-4">
+        <h2>Sales Management</h2>
+        <p>Manage your sales activities from initial customer contact thru warehosue picking and shipping.</p>
+        @Html.ActionLink("Learn more about Sales Activity Management", "Sales", "Home")
+
+
+    </div>
+    <div class="col-md-4">
+        <h2>Purchasing Management</h2>
+        <p>Mange the products you purchase whether individually or by the truckload. Track consignment items, returns, and even offsite inventory.</p>
+        @Html.ActionLink("Learn more about Purchasing Management", "Purchasing", "Home")
+   </div>
+</div>

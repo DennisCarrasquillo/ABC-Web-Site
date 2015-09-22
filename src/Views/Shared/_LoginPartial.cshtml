@@ -1,0 +1,15 @@
+﻿@{ABC_Inventory.Models.ActiveUser UserProps = (ABC_Inventory.Models.ActiveUser)Session["ActiveUser"];}
+
+    <ul class="nav navbar-nav navbar-right">
+    @if (UserProps != null)
+    {
+        <li class="nav-text" style="display: block">Welcome @UserProps.UserName</li>
+        <li>@Html.ActionLink("Log Out", "LogOut", "Clients")</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Sign Up", "RegisterView", "Clients")</li>     
+        <li>@Html.ActionLink("Log in", "Login", "Clients", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    }
+    </ul>
+

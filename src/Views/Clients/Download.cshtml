@@ -1,0 +1,52 @@
+﻿@model ABC_Inventory.Models.DownloadViewModel
+
+@{
+    ViewBag.Title = "Down Load ABC Inventory System";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+<br/>
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br/>
+    <table>
+        <tr>
+            <td>
+                @Html.Label("Maximum Installs:", htmlAttributes: new { @class = "control-label" })
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.MaxInstalls, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Current Installs:", htmlAttributes: new { @class = "control-label" })
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CurInstalls, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Installed Version:", htmlAttributes: new { @class = "control-label" })
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.InstalledVersion, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Latest Version:", htmlAttributes: new { @class = "control-label" })
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.LatestVersion, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+        </tr>
+        </table>
+    <br/>
+        <a href="/Files/ABCInventory.zip"><img src="/images/download.jpg" /></a>
+        @*<h3>Version History</h3>*@
+}

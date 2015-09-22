@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ABC_ClientModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Province" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Client_Id" Type="Int32" Nullable="true" />
+    <Property Name="Contact_Id" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_ClientAddress" FromRole="Addresses" ToRole="Clients" />
+    <NavigationProperty Name="Contact" Relationship="Self.FK_ContactAddress" FromRole="Addresses" ToRole="Contacts" />
+  </EntityType>
+  <EntityType Name="Billing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InceptionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExceptionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NextPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CCNumber" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CCExpDate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CCSV" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="ABC_ClientModel.ClientBilling" FromRole="Billing" ToRole="Client" />
+    <Property Name="PaymentMethod" Type="ABC_ClientModel.Payment_Types" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Clientname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CageCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SICCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK_ClientAddress" FromRole="Clients" ToRole="Addresses" />
+    <NavigationProperty Name="Contacts" Relationship="Self.FK_ClientContact" FromRole="Clients" ToRole="Contacts" />
+    <NavigationProperty Name="Users" Relationship="ABC_ClientModel.ClientUser" FromRole="Client" ToRole="User" />
+    <NavigationProperty Name="Options" Relationship="ABC_ClientModel.ClientOption" FromRole="Client" ToRole="Option" />
+    <NavigationProperty Name="Settings" Relationship="ABC_ClientModel.ClientSetting" FromRole="Client" ToRole="Setting" />
+    <NavigationProperty Name="Billings" Relationship="ABC_ClientModel.ClientBilling" FromRole="Client" ToRole="Billing" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyType" Type="ABC_ClientModel.Business_Types" />
+    <Property Name="InActive" Type="Boolean" />
+    <NavigationProperty Name="Invoices" Relationship="ABC_ClientModel.ClientInvoice" FromRole="Client" ToRole="Invoice" />
+    <NavigationProperty Name="InvoiceHistories" Relationship="ABC_ClientModel.ClientInvoiceHistory" FromRole="Client" ToRole="InvoiceHistory" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CellPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactType" Type="ABC_ClientModel.Contact_Types" Nullable="false" />
+    <Property Name="Client_Id" Type="Int32" Nullable="true" />
+    <Property Name="User_Id" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK_ContactAddress" FromRole="Contacts" ToRole="Addresses" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_ClientContact" FromRole="Contacts" ToRole="Clients" />
+    <Property Name="Gender" Type="ABC_ClientModel.Gender_Types" />
+    <NavigationProperty Name="User" Relationship="ABC_ClientModel.UserContact" FromRole="Contact" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Option">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Purchasing" Type="Boolean" />
+    <Property Name="Item" Type="Boolean" />
+    <Property Name="Sales" Type="Boolean" />
+    <Property Name="Warehouse" Type="Boolean" />
+    <Property Name="Demo" Type="Boolean" />
+    <Property Name="ExpDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Client" Relationship="ABC_ClientModel.ClientOption" FromRole="Option" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CurrentVersion" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="ABC_ClientModel.ClientSetting" FromRole="Setting" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="SystemStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CurrentVersion" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ClientAddress">
+    <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactAddress">
+    <End Role="Contacts" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contacts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="Contact_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContact">
+    <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contacts">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ABC_ClientEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Billings" EntityType="Self.Billing" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Options" EntityType="Self.Option" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="SystemStatus1" EntityType="ABC_ClientModel.SystemStatus" />
+    <AssociationSet Name="FK_ClientAddress" Association="Self.FK_ClientAddress">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactAddress" Association="Self.FK_ContactAddress">
+      <End Role="Contacts" EntitySet="Contacts" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContact" Association="Self.FK_ClientContact">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Contacts" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="ABC_ClientModel.User" />
+    <AssociationSet Name="ClientUser" Association="ABC_ClientModel.ClientUser">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ClientOption" Association="ABC_ClientModel.ClientOption">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Option" EntitySet="Options" />
+    </AssociationSet>
+    <AssociationSet Name="ClientSetting" Association="ABC_ClientModel.ClientSetting">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Setting" EntitySet="Settings" />
+    </AssociationSet>
+    <AssociationSet Name="ClientBilling" Association="ABC_ClientModel.ClientBilling">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Billing" EntitySet="Billings" />
+    </AssociationSet>
+    <AssociationSet Name="UserContact" Association="ABC_ClientModel.UserContact">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="Invoices" EntityType="ABC_ClientModel.Invoice" />
+    <AssociationSet Name="ClientInvoice" Association="ABC_ClientModel.ClientInvoice">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <EntitySet Name="InvoiceHistories" EntityType="ABC_ClientModel.InvoiceHistory" />
+    <AssociationSet Name="ClientInvoiceHistory" Association="ABC_ClientModel.ClientInvoiceHistory">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="InvoiceHistory" EntitySet="InvoiceHistories" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Client" Relationship="ABC_ClientModel.ClientUser" FromRole="User" ToRole="Client" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Password_ExpireDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Contacts" Relationship="ABC_ClientModel.UserContact" FromRole="User" ToRole="Contact" />
+    <Property Name="Usertype" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="ClientUser">
+    <End Type="ABC_ClientModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ABC_ClientModel.User" Role="User" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Business_Types">
+    <Member Name="Corporatrion" Value="1" />
+    <Member Name="Partnership" Value="2" />
+    <Member Name="LLC" Value="3" />
+    <Member Name="Trust" Value="4" />
+    <Member Name="Individual" Value="5" />
+  </EnumType>
+  <EnumType Name="Role_Types">
+    <Member Name="Admin" Value="1" />
+    <Member Name="Manager" Value="2" />
+    <Member Name="User" Value="3" />
+    <Member Name="None" Value="0" />
+  </EnumType>
+  <EnumType Name="SubSystem_Types">
+    <Member Name="Purchasing" Value="3" />
+    <Member Name="Sales" Value="4" />
+    <Member Name="Warehouse" Value="5" />
+    <Member Name="Item" Value="2" />
+    <Member Name="Master" Value="1" />
+    <Member Name="admin" Value="6" />
+  </EnumType>
+  <Association Name="ClientOption">
+    <End Type="ABC_ClientModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ABC_ClientModel.Option" Role="Option" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientSetting">
+    <End Type="ABC_ClientModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ABC_ClientModel.Setting" Role="Setting" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientBilling">
+    <End Type="ABC_ClientModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ABC_ClientModel.Billing" Role="Billing" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Contact_Types">
+    <Member Name="President" Value="1" />
+    <Member Name="Executive" Value="2" />
+    <Member Name="Manager" Value="3" />
+    <Member Name="Associiate" Value="4" />
+    <Member Name="Employee" Value="5" />
+    <Member Name="Consultant" Value="6" />
+    <Member Name="Personal" Value="7" />
+    <Member Name="Individual" Value="8" />
+  </EnumType>
+  <EnumType Name="Gender_Types">
+    <Member Name="Male" Value="1" />
+    <Member Name="Female" Value="2" />
+  </EnumType>
+  <Association Name="UserContact">
+    <End Type="ABC_ClientModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ABC_ClientModel.Contact" Role="Contact" Multiplicity="1" />
+  </Association>
+  <EnumType Name="Payment_Types">
+    <Member Name="Cash" Value="1" />
+    <Member Name="Invoice" Value="2" />
+    <Member Name="CreditCard" Value="3" />
+  </EnumType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNumber" Type="String" Nullable="false" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Description" Type="ABC_ClientModel.InvoiceStatus_Types" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="ABC_ClientModel.ClientInvoice" FromRole="Invoice" ToRole="Client" />
+  </EntityType>
+  <EnumType Name="InvoiceStatus_Types">
+    <Member Name="NotSent" Value="1" />
+    <Member Name="Sent" Value="2" />
+    <Member Name="Payed" Value="3" />
+  </EnumType>
+  <Association Name="ClientInvoice">
+    <End Type="ABC_ClientModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ABC_ClientModel.Invoice" Role="Invoice" Multiplicity="*" />
+  </Association>
+  <EntityType Name="InvoiceHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNumber" Type="String" Nullable="false" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" />
+    <Property Name="Description" Type="InvoiceStatus_Types" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="ABC_ClientModel.ClientInvoiceHistory" FromRole="InvoiceHistory" ToRole="Client" />
+  </EntityType>
+  <Association Name="ClientInvoiceHistory">
+    <End Type="ABC_ClientModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ABC_ClientModel.InvoiceHistory" Role="InvoiceHistory" Multiplicity="*" />
+  </Association>
+</Schema>

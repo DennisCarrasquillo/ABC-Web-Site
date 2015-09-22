@@ -1,0 +1,959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="InventoryContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Lots" EntityType="Model.Lots" />
+    <EntitySet Name="Item_Quantity" EntityType="Model.Item_Quantity" />
+    <AssociationSet Name="Item_MasterItem_Quantity" Association="Model.Item_MasterItem_Quantity">
+      <End Role="Item_Master" EntitySet="Item_Master" />
+      <End Role="Item_Quantity" EntitySet="Item_Quantity" />
+    </AssociationSet>
+    <AssociationSet Name="LotsItem_Quantity" Association="Model.LotsItem_Quantity">
+      <End Role="Lots" EntitySet="Lots" />
+      <End Role="Item_Quantity" EntitySet="Item_Quantity" />
+    </AssociationSet>
+    <EntitySet Name="Item_Alternates" EntityType="Model.Item_Alternates" />
+    <EntitySet Name="Item_Master" EntityType="Model.Item_Master" />
+    <AssociationSet Name="Item_MasterItem_Alternates" Association="Model.Item_MasterItem_Alternates">
+      <End Role="Item_Master" EntitySet="Item_Master" />
+      <End Role="Item_Alternates" EntitySet="Item_Alternates" />
+    </AssociationSet>
+    <EntitySet Name="Item_Images" EntityType="Model.Item_Images" />
+    <AssociationSet Name="Item_MasterItem_Images" Association="Model.Item_MasterItem_Images">
+      <End Role="Item_Master" EntitySet="Item_Master" />
+      <End Role="Item_Images" EntitySet="Item_Images" />
+    </AssociationSet>
+    <EntitySet Name="Addresses" EntityType="Model.Address" />
+    <EntitySet Name="Contacts" EntityType="Model.Contact" />
+    <AssociationSet Name="ContactAddress" Association="Model.ContactAddress">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <EntitySet Name="Vendors" EntityType="Model.Vendor" />
+    <AssociationSet Name="VendorContact" Association="Model.VendorContact">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="VendorLots" Association="Model.VendorLots">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Lots" EntitySet="Lots" />
+    </AssociationSet>
+    <AssociationSet Name="VendorItem_Quantity" Association="Model.VendorItem_Quantity">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Item_Quantity" EntitySet="Item_Quantity" />
+    </AssociationSet>
+    <EntitySet Name="Warehouses" EntityType="Model.Warehouse" />
+    <AssociationSet Name="WarehouseAddress" Association="Model.WarehouseAddress">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <EntitySet Name="Locations" EntityType="Model.Locations" />
+    <AssociationSet Name="WarehouseLocations" Association="Model.WarehouseLocations">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Locations" EntitySet="Locations" />
+    </AssociationSet>
+    <EntitySet Name="FloorPlans" EntityType="Model.FloorPlan" />
+    <AssociationSet Name="WarehouseFloorPlan" Association="Model.WarehouseFloorPlan">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="FloorPlan" EntitySet="FloorPlans" />
+    </AssociationSet>
+    <EntitySet Name="Racks" EntityType="Model.Rack" />
+    <AssociationSet Name="LocationsRack" Association="Model.LocationsRack">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Rack" EntitySet="Racks" />
+    </AssociationSet>
+    <EntitySet Name="Shelves" EntityType="Model.Shelf" />
+    <AssociationSet Name="RackShelf" Association="Model.RackShelf">
+      <End Role="Rack" EntitySet="Racks" />
+      <End Role="Shelf" EntitySet="Shelves" />
+    </AssociationSet>
+    <EntitySet Name="Bins" EntityType="Model.Bin" />
+    <AssociationSet Name="ShelfBin" Association="Model.ShelfBin">
+      <End Role="Shelf" EntitySet="Shelves" />
+      <End Role="Bin" EntitySet="Bins" />
+    </AssociationSet>
+    <AssociationSet Name="Item_QuantityBin" Association="Model.Item_QuantityBin">
+      <End Role="Item_Quantity" EntitySet="Item_Quantity" />
+      <End Role="Bin" EntitySet="Bins" />
+    </AssociationSet>
+    <EntitySet Name="POHeaders" EntityType="Model.POHeader" />
+    <EntitySet Name="PODetails" EntityType="Model.PODetail" />
+    <AssociationSet Name="POHeaderPODetail" Association="Model.POHeaderPODetail">
+      <End Role="POHeader" EntitySet="POHeaders" />
+      <End Role="PODetail" EntitySet="PODetails" />
+    </AssociationSet>
+    <AssociationSet Name="POHeaderVendor" Association="Model.POHeaderVendor">
+      <End Role="POHeader" EntitySet="POHeaders" />
+      <End Role="Vendor" EntitySet="Vendors" />
+    </AssociationSet>
+    <AssociationSet Name="PODetailItem_Master" Association="Model.PODetailItem_Master">
+      <End Role="PODetail" EntitySet="PODetails" />
+      <End Role="Item_Master" EntitySet="Item_Master" />
+    </AssociationSet>
+    <AssociationSet Name="POHeaderWarehouse" Association="Model.POHeaderWarehouse">
+      <End Role="POHeader" EntitySet="POHeaders" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
+    </AssociationSet>
+    <EntitySet Name="Clients" EntityType="Model.Client" />
+    <AssociationSet Name="ClientAddress" Association="Model.ClientAddress">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="ClientItem_Master" Association="Model.ClientItem_Master">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Item_Master" EntitySet="Item_Master" />
+    </AssociationSet>
+    <AssociationSet Name="ClientPOHeader" Association="Model.ClientPOHeader">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="POHeader" EntitySet="POHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="ClientVendor" Association="Model.ClientVendor">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Vendor" EntitySet="Vendors" />
+    </AssociationSet>
+    <AssociationSet Name="ClientWarehouse" Association="Model.ClientWarehouse">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
+    </AssociationSet>
+    <EntitySet Name="Salesmen" EntityType="Model.Salesman" />
+    <EntitySet Name="Customers" EntityType="Model.Customer" />
+    <EntitySet Name="SOHeaders" EntityType="Model.SOHeader" />
+    <EntitySet Name="SODetails" EntityType="Model.SODetail" />
+    <AssociationSet Name="SalesmanSOHeader" Association="Model.SalesmanSOHeader">
+      <End Role="Salesman" EntitySet="Salesmen" />
+      <End Role="SOHeader" EntitySet="SOHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="SOHeaderSODetail" Association="Model.SOHeaderSODetail">
+      <End Role="SOHeader" EntitySet="SOHeaders" />
+      <End Role="SODetail" EntitySet="SODetails" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerSOHeader" Association="Model.CustomerSOHeader">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="SOHeader" EntitySet="SOHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="ClientSalesman" Association="Model.ClientSalesman">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Salesman" EntitySet="Salesmen" />
+    </AssociationSet>
+    <AssociationSet Name="ClientCustomer" Association="Model.ClientCustomer">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerAddress" Association="Model.CustomerAddress">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerContact" Association="Model.CustomerContact">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="Model.Users" />
+    <AssociationSet Name="ClientUsers" Association="Model.ClientUsers">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Receivings" EntityType="Model.Receiving" />
+    <AssociationSet Name="POHeaderReceiving" Association="Model.POHeaderReceiving">
+      <End Role="POHeader" EntitySet="POHeaders" />
+      <End Role="Receiving" EntitySet="Receivings" />
+    </AssociationSet>
+    <EntitySet Name="Settings" EntityType="Model.Settings" />
+    <AssociationSet Name="SalesmanCustomer" Association="Model.SalesmanCustomer">
+      <End Role="Salesman" EntitySet="Salesmen" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <EntitySet Name="Notes" EntityType="Model.Notes" />
+    <AssociationSet Name="CustomerNotes" Association="Model.CustomerNotes">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <EntitySet Name="Reminders" EntityType="Model.Reminder" />
+    <AssociationSet Name="SalesmanReminder" Association="Model.SalesmanReminder">
+      <End Role="Salesman" EntitySet="Salesmen" />
+      <End Role="Reminder" EntitySet="Reminders" />
+    </AssociationSet>
+    <AssociationSet Name="SalesmanContact" Association="Model.SalesmanContact">
+      <End Role="Salesman" EntitySet="Salesmen" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="Model.Roles" />
+    <AssociationSet Name="UsersRoles" Association="Model.UsersRoles">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <EntitySet Name="Billings" EntityType="Model.Billing" />
+    <EntitySet Name="States" EntityType="Model.States" />
+    <EntitySet Name="SystemOptions" EntityType="Model.SystemOptions" />
+    <EntitySet Name="PricingBasis" EntityType="Model.PricingBasis" />
+    <EntitySet Name="Options" EntityType="Model.Options" />
+    <AssociationSet Name="ClientOptions1" Association="Model.ClientOptions">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Options" EntitySet="Options" />
+    </AssociationSet>
+    <EntitySet Name="FrequencyDiscounts" EntityType="Model.FrequencyDiscounts" />
+    <AssociationSet Name="FK_ClientBilling" Association="Model.FK_ClientBilling">
+      <End Role="Billing" EntitySet="Billings" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="Item_MasterSODetail" Association="Model.Item_MasterSODetail">
+      <End Role="Item_Master" EntitySet="Item_Master" />
+      <End Role="SODetail" EntitySet="SODetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientSettings" Association="Model.FK_ClientSettings">
+      <End Role="Settings" EntitySet="Settings" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <EntitySet Name="Item_Pricing" EntityType="Model.Item_Pricing" />
+    <AssociationSet Name="Item_MasterItem_Pricing" Association="Model.Item_MasterItem_Pricing">
+      <End Role="Item_Master" EntitySet="Item_Master" />
+      <End Role="Item_Pricing" EntitySet="Item_Pricing" />
+    </AssociationSet>
+    <AssociationSet Name="UsersContact" Association="Model.UsersContact">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="ClientContact" Association="Model.ClientContact">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="VendorAddress" Association="Model.VendorAddress">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <EntitySet Name="Vendor_Template" EntityType="Model.Vendor_Template" />
+    <AssociationSet Name="VendorVendor_Template" Association="Model.VendorVendor_Template">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Vendor_Template" EntitySet="Vendor_Template" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Item_Master">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Item_Number" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Item_Quantity" Relationship="Model.Item_MasterItem_Quantity" FromRole="Item_Master" ToRole="Item_Quantity" />
+    <NavigationProperty Name="Item_Alternates" Relationship="Model.Item_MasterItem_Alternates" FromRole="Item_Master" ToRole="Item_Alternates" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Item_Images" Relationship="Model.Item_MasterItem_Images" FromRole="Item_Master" ToRole="Item_Images" />
+    <NavigationProperty Name="PODetail" Relationship="Model.PODetailItem_Master" FromRole="Item_Master" ToRole="PODetail" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientItem_Master" FromRole="Item_Master" ToRole="Client" />
+    <Property Name="ItemType" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SODetails" Relationship="Model.Item_MasterSODetail" FromRole="Item_Master" ToRole="SODetail" />
+    <NavigationProperty Name="Item_Pricing" Relationship="Model.Item_MasterItem_Pricing" FromRole="Item_Master" ToRole="Item_Pricing" />
+  </EntityType>
+  <EntityType Name="Lots">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lot_Number" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Item_Quantity" Relationship="Model.LotsItem_Quantity" FromRole="Lots" ToRole="Item_Quantity" />
+    <Property Name="Lot_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Vendor" Relationship="Model.VendorLots" FromRole="Lots" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Item_Quantity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OnHand" Type="Int32" Nullable="false" />
+    <Property Name="OnOrder" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.Item_MasterItem_Quantity" FromRole="Item_Quantity" ToRole="Item_Master" />
+    <NavigationProperty Name="Lot" Relationship="Model.LotsItem_Quantity" FromRole="Item_Quantity" ToRole="Lots" />
+    <Property Name="Type" Type="Model.Quantity_Types" Nullable="false" />
+    <Property Name="DateCode" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Vendor" Relationship="Model.VendorItem_Quantity" FromRole="Item_Quantity" ToRole="Vendor" />
+    <NavigationProperty Name="Bins" Relationship="Model.Item_QuantityBin" FromRole="Item_Quantity" ToRole="Bin" />
+    <Property Name="Manufacturer" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="UnitOfMeasure" Type="Model.UOM_Types" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <Association Name="Item_MasterItem_Quantity">
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="1" />
+    <End Type="Model.Item_Quantity" Role="Item_Quantity" Multiplicity="1" />
+  </Association>
+  <Association Name="LotsItem_Quantity">
+    <End Type="Model.Lots" Role="Lots" Multiplicity="1" />
+    <End Type="Model.Item_Quantity" Role="Item_Quantity" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Item_Alternates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Alternate_Number" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="Model.Alternate_Types" Nullable="false" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.Item_MasterItem_Alternates" FromRole="Item_Alternates" ToRole="Item_Master" />
+  </EntityType>
+  <Association Name="Item_MasterItem_Alternates">
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="1" />
+    <End Type="Model.Item_Alternates" Role="Item_Alternates" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Item_Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="URL" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.Item_MasterItem_Images" FromRole="Item_Images" ToRole="Item_Master" />
+  </EntityType>
+  <Association Name="Item_MasterItem_Images">
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="1" />
+    <End Type="Model.Item_Images" Role="Item_Images" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Alternate_Types">
+    <Member Name="Primary" Value="1" />
+    <Member Name="Alternate" Value="2" />
+    <Member Name="SKU" Value="3" />
+    <Member Name="Internal" Value="4" />
+    <Member Name="Vendor" Value="5" />
+  </EnumType>
+  <EnumType Name="Quantity_Types">
+    <Member Name="InHouse" Value="1" />
+    <Member Name="Consignment" Value="2" />
+    <Member Name="Extra" Value="3" />
+  </EnumType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="false" />
+    <Property Name="Province" Type="String" MaxLength="40" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="40" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Contact" Relationship="Model.ContactAddress" FromRole="Address" ToRole="Contact" />
+    <NavigationProperty Name="Warehouse" Relationship="Model.WarehouseAddress" FromRole="Address" ToRole="Warehouse" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientAddress" FromRole="Address" ToRole="Client" />
+    <NavigationProperty Name="Customer" Relationship="Model.CustomerAddress" FromRole="Address" ToRole="Customer" />
+    <Property Name="AddressType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vendor" Relationship="Model.VendorAddress" FromRole="Address" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="Gender" Type="Model.Gender_Types" Nullable="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CellPhone" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Fax" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Addresses" Relationship="Model.ContactAddress" FromRole="Contact" ToRole="Address" />
+    <NavigationProperty Name="Vendor" Relationship="Model.VendorContact" FromRole="Contact" ToRole="Vendor" />
+    <NavigationProperty Name="Customer" Relationship="Model.CustomerContact" FromRole="Contact" ToRole="Customer" />
+    <NavigationProperty Name="Salesman" Relationship="Model.SalesmanContact" FromRole="Contact" ToRole="Salesman" />
+    <Property Name="ContactType" Type="Model.Contact_Types" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model.UsersContact" FromRole="Contact" ToRole="Users" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientContact" FromRole="Contact" ToRole="Client" />
+  </EntityType>
+  <Association Name="ContactAddress">
+    <End Type="Model.Contact" Role="Contact" Multiplicity="0..1" />
+    <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Contacts" Relationship="Model.VendorContact" FromRole="Vendor" ToRole="Contact" />
+    <NavigationProperty Name="Lots" Relationship="Model.VendorLots" FromRole="Vendor" ToRole="Lots" />
+    <NavigationProperty Name="Item_Quantity" Relationship="Model.VendorItem_Quantity" FromRole="Vendor" ToRole="Item_Quantity" />
+    <NavigationProperty Name="POHeader" Relationship="Model.POHeaderVendor" FromRole="Vendor" ToRole="POHeader" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientVendor" FromRole="Vendor" ToRole="Client" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="BusinessType" Type="Model.Business_Types" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="ReorderDays" Type="Int32" Nullable="false" />
+    <Property Name="MinShipAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Addresses" Relationship="Model.VendorAddress" FromRole="Vendor" ToRole="Address" />
+    <NavigationProperty Name="Vendor_Template" Relationship="Model.VendorVendor_Template" FromRole="Vendor" ToRole="Vendor_Template" />
+  </EntityType>
+  <Association Name="VendorContact">
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="0..1" />
+    <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+  </Association>
+  <Association Name="VendorLots">
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="1" />
+    <End Type="Model.Lots" Role="Lots" Multiplicity="*" />
+  </Association>
+  <Association Name="VendorItem_Quantity">
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="1" />
+    <End Type="Model.Item_Quantity" Role="Item_Quantity" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WarehouseName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Addresses" Relationship="Model.WarehouseAddress" FromRole="Warehouse" ToRole="Address" />
+    <NavigationProperty Name="Locations" Relationship="Model.WarehouseLocations" FromRole="Warehouse" ToRole="Locations" />
+    <NavigationProperty Name="FloorPlans" Relationship="Model.WarehouseFloorPlan" FromRole="Warehouse" ToRole="FloorPlan" />
+    <NavigationProperty Name="POHeader" Relationship="Model.POHeaderWarehouse" FromRole="Warehouse" ToRole="POHeader" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientWarehouse" FromRole="Warehouse" ToRole="Client" />
+  </EntityType>
+  <Association Name="WarehouseAddress">
+    <End Type="Model.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+    <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Warehouse" Relationship="Model.WarehouseLocations" FromRole="Locations" ToRole="Warehouse" />
+    <NavigationProperty Name="Racks" Relationship="Model.LocationsRack" FromRole="Locations" ToRole="Rack" />
+    <Property Name="LocationNane" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="LocationType" Type="Model.Location_Types" Nullable="false" />
+  </EntityType>
+  <Association Name="WarehouseLocations">
+    <End Type="Model.Warehouse" Role="Warehouse" Multiplicity="1" />
+    <End Type="Model.Locations" Role="Locations" Multiplicity="*" />
+  </Association>
+  <EntityType Name="FloorPlan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Warehouse" Relationship="Model.WarehouseFloorPlan" FromRole="FloorPlan" ToRole="Warehouse" />
+  </EntityType>
+  <Association Name="WarehouseFloorPlan">
+    <End Type="Model.Warehouse" Role="Warehouse" Multiplicity="1" />
+    <End Type="Model.FloorPlan" Role="FloorPlan" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="Rack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Location" Relationship="Model.LocationsRack" FromRole="Rack" ToRole="Locations" />
+    <NavigationProperty Name="Shelves" Relationship="Model.RackShelf" FromRole="Rack" ToRole="Shelf" />
+    <Property Name="RackName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="Width" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Depth" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="LocationsRack">
+    <End Type="Model.Locations" Role="Locations" Multiplicity="1" />
+    <End Type="Model.Rack" Role="Rack" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Shelf">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Rack" Relationship="Model.RackShelf" FromRole="Shelf" ToRole="Rack" />
+    <NavigationProperty Name="Bins" Relationship="Model.ShelfBin" FromRole="Shelf" ToRole="Bin" />
+    <Property Name="ShelfNumber" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="RackShelf">
+    <End Type="Model.Rack" Role="Rack" Multiplicity="1" />
+    <End Type="Model.Shelf" Role="Shelf" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Bin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Shelf" Relationship="Model.ShelfBin" FromRole="Bin" ToRole="Shelf" />
+    <NavigationProperty Name="Item_Quantity" Relationship="Model.Item_QuantityBin" FromRole="Bin" ToRole="Item_Quantity" />
+    <Property Name="BinNumber" Type="Int32" Nullable="false" />
+    <Property Name="Width" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="ShelfBin">
+    <End Type="Model.Shelf" Role="Shelf" Multiplicity="1" />
+    <End Type="Model.Bin" Role="Bin" Multiplicity="*" />
+  </Association>
+  <Association Name="Item_QuantityBin">
+    <End Type="Model.Item_Quantity" Role="Item_Quantity" Multiplicity="*" />
+    <End Type="Model.Bin" Role="Bin" Multiplicity="*" />
+  </Association>
+  <EntityType Name="POHeader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="PODetails" Relationship="Model.POHeaderPODetail" FromRole="POHeader" ToRole="PODetail" />
+    <NavigationProperty Name="Vendors" Relationship="Model.POHeaderVendor" FromRole="POHeader" ToRole="Vendor" />
+    <NavigationProperty Name="Warehouses" Relationship="Model.POHeaderWarehouse" FromRole="POHeader" ToRole="Warehouse" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientPOHeader" FromRole="POHeader" ToRole="Client" />
+    <NavigationProperty Name="Receivings" Relationship="Model.POHeaderReceiving" FromRole="POHeader" ToRole="Receiving" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PODetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="POHeader" Relationship="Model.POHeaderPODetail" FromRole="PODetail" ToRole="POHeader" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.PODetailItem_Master" FromRole="PODetail" ToRole="Item_Master" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="POHeaderPODetail">
+    <End Type="Model.POHeader" Role="POHeader" Multiplicity="1" />
+    <End Type="Model.PODetail" Role="PODetail" Multiplicity="*" />
+  </Association>
+  <Association Name="POHeaderVendor">
+    <End Type="Model.POHeader" Role="POHeader" Multiplicity="*" />
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="1" />
+  </Association>
+  <Association Name="PODetailItem_Master">
+    <End Type="Model.PODetail" Role="PODetail" Multiplicity="1" />
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="1" />
+  </Association>
+  <Association Name="POHeaderWarehouse">
+    <End Type="Model.POHeader" Role="POHeader" Multiplicity="1" />
+    <End Type="Model.Warehouse" Role="Warehouse" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Addresses" Relationship="Model.ClientAddress" FromRole="Client" ToRole="Address" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.ClientItem_Master" FromRole="Client" ToRole="Item_Master" />
+    <NavigationProperty Name="POHeaders" Relationship="Model.ClientPOHeader" FromRole="Client" ToRole="POHeader" />
+    <NavigationProperty Name="Vendors" Relationship="Model.ClientVendor" FromRole="Client" ToRole="Vendor" />
+    <NavigationProperty Name="Warehouses" Relationship="Model.ClientWarehouse" FromRole="Client" ToRole="Warehouse" />
+    <NavigationProperty Name="Salesmen" Relationship="Model.ClientSalesman" FromRole="Client" ToRole="Salesman" />
+    <NavigationProperty Name="Customers" Relationship="Model.ClientCustomer" FromRole="Client" ToRole="Customer" />
+    <NavigationProperty Name="Users" Relationship="Model.ClientUsers" FromRole="Client" ToRole="Users" />
+    <Property Name="Description" Type="String" MaxLength="Max" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="CageCode" Type="String" MaxLength="12" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="SICCode" Type="String" MaxLength="12" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="CompanyType" Type="Model.Business_Types" Nullable="true" />
+    <NavigationProperty Name="Options" Relationship="Model.ClientOptions" FromRole="Client" ToRole="Options" />
+    <Property Name="Settings_Id" Type="Int32" />
+    <Property Name="Billings_Id" Type="Int32" />
+    <NavigationProperty Name="Billing" Relationship="Model.FK_ClientBilling" FromRole="Client" ToRole="Billing" />
+    <NavigationProperty Name="Setting" Relationship="Model.FK_ClientSettings" FromRole="Client" ToRole="Settings" />
+    <Property Name="InActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Contacts" Relationship="Model.ClientContact" FromRole="Client" ToRole="Contact" />
+  </EntityType>
+  <Association Name="ClientAddress">
+    <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="Model.Address" Role="Address" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientItem_Master">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientPOHeader">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.POHeader" Role="POHeader" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientVendor">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientWarehouse">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Warehouse" Role="Warehouse" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Salesman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SOHeaders" Relationship="Model.SalesmanSOHeader" FromRole="Salesman" ToRole="SOHeader" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientSalesman" FromRole="Salesman" ToRole="Client" />
+    <NavigationProperty Name="Customers" Relationship="Model.SalesmanCustomer" FromRole="Salesman" ToRole="Customer" />
+    <NavigationProperty Name="Reminders" Relationship="Model.SalesmanReminder" FromRole="Salesman" ToRole="Reminder" />
+    <NavigationProperty Name="Contacts" Relationship="Model.SalesmanContact" FromRole="Salesman" ToRole="Contact" />
+    <Property Name="Commission" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SOHeaders" Relationship="Model.CustomerSOHeader" FromRole="Customer" ToRole="SOHeader" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientCustomer" FromRole="Customer" ToRole="Client" />
+    <NavigationProperty Name="ShipToAddress" Relationship="Model.CustomerAddress" FromRole="Customer" ToRole="Address" />
+    <NavigationProperty Name="BillToAddress" Relationship="Model.CustomerAddress" FromRole="Customer" ToRole="Address" />
+    <NavigationProperty Name="Addresses" Relationship="Model.CustomerAddress" FromRole="Customer" ToRole="Address" />
+    <NavigationProperty Name="Contacts" Relationship="Model.CustomerContact" FromRole="Customer" ToRole="Contact" />
+    <NavigationProperty Name="Salesman" Relationship="Model.SalesmanCustomer" FromRole="Customer" ToRole="Salesman" />
+    <NavigationProperty Name="Notes" Relationship="Model.CustomerNotes" FromRole="Customer" ToRole="Notes" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="CustomerType" Type="Model.Business_Types" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ShipToAddress_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SOHeader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Salesman" Relationship="Model.SalesmanSOHeader" FromRole="SOHeader" ToRole="Salesman" />
+    <NavigationProperty Name="SODetails" Relationship="Model.SOHeaderSODetail" FromRole="SOHeader" ToRole="SODetail" />
+    <NavigationProperty Name="Customer" Relationship="Model.CustomerSOHeader" FromRole="SOHeader" ToRole="Customer" />
+    <Property Name="SONumber" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SODetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SOHeader" Relationship="Model.SOHeaderSODetail" FromRole="SODetail" ToRole="SOHeader" />
+    <Property Name="SalePrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.Item_MasterSODetail" FromRole="SODetail" ToRole="Item_Master" />
+  </EntityType>
+  <Association Name="SalesmanSOHeader">
+    <End Type="Model.Salesman" Role="Salesman" Multiplicity="1" />
+    <End Type="Model.SOHeader" Role="SOHeader" Multiplicity="*" />
+  </Association>
+  <Association Name="SOHeaderSODetail">
+    <End Type="Model.SOHeader" Role="SOHeader" Multiplicity="1" />
+    <End Type="Model.SODetail" Role="SODetail" Multiplicity="*" />
+  </Association>
+  <Association Name="CustomerSOHeader">
+    <End Type="Model.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="Model.SOHeader" Role="SOHeader" Multiplicity="1" />
+  </Association>
+  <Association Name="ClientSalesman">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Salesman" Role="Salesman" Multiplicity="*" />
+  </Association>
+  <Association Name="ClientCustomer">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Customer" Role="Customer" Multiplicity="*" />
+  </Association>
+  <Association Name="CustomerAddress">
+    <End Type="Model.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
+  </Association>
+  <Association Name="CustomerContact">
+    <End Type="Model.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientUsers" FromRole="Users" ToRole="Client" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Password_ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Roles" Relationship="Model.UsersRoles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Contacts" Relationship="Model.UsersContact" FromRole="Users" ToRole="Contact" />
+  </EntityType>
+  <Association Name="ClientUsers">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Users" Role="Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Receiving">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="POHeader" Relationship="Model.POHeaderReceiving" FromRole="Receiving" ToRole="POHeader" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="POHeaderReceiving">
+    <End Type="Model.POHeader" Role="POHeader" Multiplicity="1" />
+    <End Type="Model.Receiving" Role="Receiving" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POPrefix" Type="String" MaxLength="4" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="NextPONumber" Type="Int32" Nullable="true" />
+    <Property Name="SOPrefix" Type="String" MaxLength="6" Nullable="true" Unicode="true" FixedLength="false" />
+    <Property Name="NextSONumber" Type="Int32" annotation:StoreGeneratedPattern="None" Nullable="true" />
+    <NavigationProperty Name="Clients" Relationship="Model.FK_ClientSettings" FromRole="Settings" ToRole="Client" />
+  </EntityType>
+  <Association Name="SalesmanCustomer">
+    <End Type="Model.Salesman" Role="Salesman" Multiplicity="1" />
+    <End Type="Model.Customer" Role="Customer" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Note" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NoteDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Model.CustomerNotes" FromRole="Notes" ToRole="Customer" />
+  </EntityType>
+  <Association Name="CustomerNotes">
+    <End Type="Model.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="Model.Notes" Role="Notes" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Reminder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Note" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ReminderDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Salesman" Relationship="Model.SalesmanReminder" FromRole="Reminder" ToRole="Salesman" />
+    <Property Name="ReminderType" Type="Model.Reminder_Types" Nullable="false" />
+  </EntityType>
+  <Association Name="SalesmanReminder">
+    <End Type="Model.Salesman" Role="Salesman" Multiplicity="1" />
+    <End Type="Model.Reminder" Role="Reminder" Multiplicity="*" />
+  </Association>
+  <Association Name="SalesmanContact">
+    <End Type="Model.Salesman" Role="Salesman" Multiplicity="0..1" />
+    <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubSystem" Type="Model.SubSystem_Types" Nullable="false" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model.UsersRoles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <Association Name="UsersRoles">
+    <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="Model.Roles" Role="Roles" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Billing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InceptionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExceptionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Frequency" Type="Model.Frequency_Types" Nullable="false" />
+    <Property Name="NextPaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentMethod" Type="Model.Payment_Types" Nullable="false" />
+    <Property Name="CCNumber" Type="String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
+    <Property Name="CCExpDate" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="CCSV" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Clients" Relationship="Model.FK_ClientBilling" FromRole="Billing" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SystemOptions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EnumType Name="SubSystem_Types">
+    <Member Name="Purchasing" Value="3" />
+    <Member Name="Sales" Value="4" />
+    <Member Name="Warehouse" Value="5" />
+    <Member Name="Item" Value="2" />
+    <Member Name="Master" Value="1" />
+    <Member Name="admin" Value="6" />
+  </EnumType>
+  <EnumType Name="Payment_Types">
+    <Member Name="Cash" Value="1" />
+    <Member Name="Check" Value="2" />
+    <Member Name="CreditCard" Value="3" />
+    <Member Name="DebitCard" Value="4" />
+  </EnumType>
+  <EnumType Name="Frequency_Types">
+    <Member Name="Monthly" Value="1" />
+    <Member Name="Quarterly" Value="2" />
+    <Member Name="SemiAnnually" Value="3" />
+    <Member Name="Annually" Value="4" />
+  </EnumType>
+  <EnumType Name="Location_Types">
+    <Member Name="Regular" Value="1" />
+    <Member Name="Quarantined" Value="2" />
+    <Member Name="Refrigereated" Value="3" />
+    <Member Name="Overflow" Value="4" />
+    <Member Name="Holding" Value="5" />
+    <Member Name="Inspection" Value="6" />
+  </EnumType>
+  <EnumType Name="Contact_Types">
+    <Member Name="President" Value="1" />
+    <Member Name="Executive" Value="2" />
+    <Member Name="Manager" Value="3" />
+    <Member Name="Associiate" Value="4" />
+    <Member Name="Employee" Value="5" />
+    <Member Name="Consultant" Value="6" />
+    <Member Name="Personal" Value="7" />
+    <Member Name="Individual" Value="8" />
+  </EnumType>
+  <EnumType Name="Reminder_Types">
+    <Member Name="Appointment" Value="1" />
+    <Member Name="Reminder" Value="2" />
+    <Member Name="Call" Value="3" />
+    <Member Name="Meeting" Value="4" />
+    <Member Name="Note" Value="5" />
+    <Member Name="SendEmail" Value="6" />
+    <Member Name="SendMail" Value="7" />
+    <Member Name="SendMessage" Value="8" />
+  </EnumType>
+  <EnumType Name="UOM_Types">
+    <Member Name="Inches" Value="1" />
+    <Member Name="Feet" Value="2" />
+    <Member Name="Yards" Value="3" />
+    <Member Name="CubicInches" Value="4" />
+    <Member Name="CubicFeet" Value="5" />
+    <Member Name="CubicYeards" Value="6" />
+    <Member Name="Ounces" Value="7" />
+    <Member Name="Pounds" Value="8" />
+    <Member Name="Centimeters" Value="9" />
+    <Member Name="Meters" Value="10" />
+    <Member Name="CubicCentimeters" Value="11" />
+    <Member Name="Grams" Value="12" />
+    <Member Name="Liters" Value="13" />
+  </EnumType>
+  <EnumType Name="Business_Types">
+    <Member Name="Corporatrion" Value="1" />
+    <Member Name="Partnership" Value="2" />
+    <Member Name="LLC" Value="3" />
+    <Member Name="Trust" Value="4" />
+    <Member Name="Individual" Value="5" />
+  </EnumType>
+  <EntityType Name="PricingBasis">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubSystem" Type="Model.SubSystem_Types" Nullable="false" />
+    <Property Name="Basis" Type="Model.Basis_types" Nullable="false" />
+    <Property Name="RangeLow" Type="Int32" Nullable="false" />
+    <Property Name="RangeHigh" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EnumType Name="Basis_types">
+    <Member Name="User" Value="1" />
+    <Member Name="Location" Value="2" />
+    <Member Name="Division" Value="3" />
+    <Member Name="EnterPrise" Value="4" />
+  </EnumType>
+  <EntityType Name="Options">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Client" Relationship="Model.ClientOptions" FromRole="Options" ToRole="Client" />
+    <Property Name="Purchasing" Type="Boolean" />
+    <Property Name="Item" Type="Boolean" />
+    <Property Name="Sales" Type="Boolean" />
+    <Property Name="Warehouse" Type="Boolean" />
+    <Property Name="Demo" Type="Boolean" />
+    <Property Name="ExpDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <Association Name="ClientOptions">
+    <End Type="Model.Client" Role="Client" Multiplicity="1" />
+    <End Type="Model.Options" Role="Options" Multiplicity="*" />
+  </Association>
+  <EntityType Name="FrequencyDiscounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Frequency" Type="Model.Frequency_Types" Nullable="false" />
+    <Property Name="DiscountPercent" Type="Decimal" Nullable="false" Precision="8" Scale="4" />
+  </EntityType>
+  <EnumType Name="Gender_Types">
+    <Member Name="Male" Value="1" />
+    <Member Name="Female" Value="2" />
+  </EnumType>
+  <Association Name="FK_ClientBilling">
+    <End Type="Model.Billing" Role="Billing" Multiplicity="0..1" />
+    <End Type="Model.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Billings_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Item_MasterSODetail">
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="1" />
+    <End Type="Model.SODetail" Role="SODetail" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ClientSettings">
+    <End Type="Model.Settings" Role="Settings" Multiplicity="0..1" />
+    <End Type="Model.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Settings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Settings_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Item_Pricing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Minimum_Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price_Per_Unit" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="Item_Master" Relationship="Model.Item_MasterItem_Pricing" FromRole="Item_Pricing" ToRole="Item_Master" />
+  </EntityType>
+  <Association Name="Item_MasterItem_Pricing">
+    <End Type="Model.Item_Master" Role="Item_Master" Multiplicity="1" />
+    <End Type="Model.Item_Pricing" Role="Item_Pricing" Multiplicity="*" />
+  </Association>
+  <Association Name="UsersContact">
+    <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="Model.Contact" Role="Contact" Multiplicity="0..1" />
+  </Association>
+  <Association Name="ClientContact">
+    <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Role_Types">
+    <Member Name="Admin" Value="1" />
+    <Member Name="Manager" Value="2" />
+    <Member Name="User" Value="3" />
+  </EnumType>
+  <Association Name="VendorAddress">
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="0..1" />
+    <End Type="Model.Address" Role="Address" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Vendor_Template">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Template" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vendor" Relationship="Model.VendorVendor_Template" FromRole="Vendor_Template" ToRole="Vendor" />
+  </EntityType>
+  <Association Name="VendorVendor_Template">
+    <End Type="Model.Vendor" Role="Vendor" Multiplicity="0..1" />
+    <End Type="Model.Vendor_Template" Role="Vendor_Template" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Item_Import_Columns">
+    <Member Name="ItemNumber" Value="1" />
+    <Member Name="AlternateItem" Value="2" />
+    <Member Name="Description" Value="3" />
+    <Member Name="VendorName" Value="4" />
+    <Member Name="Manufacturer" Value="5" />
+    <Member Name="QtyOnHand" Value="6" />
+    <Member Name="UnitCost" Value="7" />
+    <Member Name="Type" Value="8" />
+    <Member Name="ImageURL" Value="9" />
+    <Member Name="DateCode" Value="10" />
+    <Member Name="UnitOfMeasure" Value="11" />
+    <Member Name="QtyOnOrder" Value="12" />
+    <Member Name="Skip" Value="0" />
+  </EnumType>
+</Schema>

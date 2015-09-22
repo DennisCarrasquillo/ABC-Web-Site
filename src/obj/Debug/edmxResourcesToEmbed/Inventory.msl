@@ -1,0 +1,731 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="InventoryContext">
+    <EntitySetMapping Name="Lots">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Lots)">
+        <MappingFragment StoreEntitySet="Lots">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Lot_Number" ColumnName="Lot_Number" />
+          <ScalarProperty Name="Lot_Date" ColumnName="Lot_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Quantity">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Item_Quantity)">
+        <MappingFragment StoreEntitySet="Item_Quantity">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OnHand" ColumnName="OnHand" />
+          <ScalarProperty Name="OnOrder" ColumnName="OnOrder" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="DateCode" ColumnName="DateCode" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Alternates">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Item_Alternates)">
+        <MappingFragment StoreEntitySet="Item_Alternates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Alternate_Number" ColumnName="Alternate_Number" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Master">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Item_Master)">
+        <MappingFragment StoreEntitySet="Item_Master">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Item_Number" ColumnName="Item_Number" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Images">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Item_Images)">
+        <MappingFragment StoreEntitySet="Item_Images">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Contact)">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactType" ColumnName="ContactType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendors">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Vendor)">
+        <MappingFragment StoreEntitySet="Vendors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BusinessType" ColumnName="BusinessType" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="ReorderDays" ColumnName="ReorderDays" />
+          <ScalarProperty Name="MinShipAmount" ColumnName="MinShipAmount" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Warehouse)">
+        <MappingFragment StoreEntitySet="Warehouses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Locations)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LocationNane" ColumnName="LocationNane" />
+          <ScalarProperty Name="LocationType" ColumnName="LocationType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FloorPlans">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.FloorPlan)">
+        <MappingFragment StoreEntitySet="FloorPlans">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Racks">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Rack)">
+        <MappingFragment StoreEntitySet="Racks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RackName" ColumnName="RackName" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Depth" ColumnName="Depth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shelves">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Shelf)">
+        <MappingFragment StoreEntitySet="Shelves">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ShelfNumber" ColumnName="ShelfNumber" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Bin)">
+        <MappingFragment StoreEntitySet="Bins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BinNumber" ColumnName="BinNumber" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POHeaders">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.POHeader)">
+        <MappingFragment StoreEntitySet="POHeaders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PODetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PODetail)">
+        <MappingFragment StoreEntitySet="PODetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CageCode" ColumnName="CageCode" />
+          <ScalarProperty Name="SICCode" ColumnName="SICCode" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="Settings_Id" ColumnName="Settings_Id" />
+          <ScalarProperty Name="Billings_Id" ColumnName="Billings_Id" />
+          <ScalarProperty Name="InActive" ColumnName="InActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salesmen">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Salesman)">
+        <MappingFragment StoreEntitySet="Salesmen">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Commission" ColumnName="Commission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShipToAddress_Id" ColumnName="ShipToAddress_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOHeaders">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.SOHeader)">
+        <MappingFragment StoreEntitySet="SOHeaders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SONumber" ColumnName="SONumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SODetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.SODetail)">
+        <MappingFragment StoreEntitySet="SODetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Password_ExpireDate" ColumnName="Password_ExpireDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Receivings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Receiving)">
+        <MappingFragment StoreEntitySet="Receivings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Settings)">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="POPrefix" ColumnName="POPrefix" />
+          <ScalarProperty Name="NextPONumber" ColumnName="NextPONumber" />
+          <ScalarProperty Name="SOPrefix" ColumnName="SOPrefix" />
+          <ScalarProperty Name="NextSONumber" ColumnName="NextSONumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Notes)">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="NoteDate" ColumnName="NoteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reminders">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Reminder)">
+        <MappingFragment StoreEntitySet="Reminders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ReminderDateTime" ColumnName="ReminderDateTime" />
+          <ScalarProperty Name="ReminderType" ColumnName="ReminderType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Roles)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubSystem" ColumnName="SubSystem" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Billings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Billing)">
+        <MappingFragment StoreEntitySet="Billings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InceptionDate" ColumnName="InceptionDate" />
+          <ScalarProperty Name="ExceptionDate" ColumnName="ExceptionDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="NextPaymentDate" ColumnName="NextPaymentDate" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="CCNumber" ColumnName="CCNumber" />
+          <ScalarProperty Name="CCExpDate" ColumnName="CCExpDate" />
+          <ScalarProperty Name="CCSV" ColumnName="CCSV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.States)">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemOptions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.SystemOptions)">
+        <MappingFragment StoreEntitySet="SystemOptions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PricingBasis">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PricingBasis)">
+        <MappingFragment StoreEntitySet="PricingBasis">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubSystem" ColumnName="SubSystem" />
+          <ScalarProperty Name="Basis" ColumnName="Basis" />
+          <ScalarProperty Name="RangeLow" ColumnName="RangeLow" />
+          <ScalarProperty Name="RangeHigh" ColumnName="RangeHigh" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Options">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Options)">
+        <MappingFragment StoreEntitySet="Options">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Purchasing" ColumnName="Purchasing" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="Sales" ColumnName="Sales" />
+          <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+          <ScalarProperty Name="Demo" ColumnName="Demo" />
+          <ScalarProperty Name="ExpDate" ColumnName="ExpDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FrequencyDiscounts">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.FrequencyDiscounts)">
+        <MappingFragment StoreEntitySet="FrequencyDiscounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Pricing">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Item_Pricing)">
+        <MappingFragment StoreEntitySet="Item_Pricing">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Minimum_Quantity" ColumnName="Minimum_Quantity" />
+          <ScalarProperty Name="Price_Per_Unit" ColumnName="Price_Per_Unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Item_MasterItem_Quantity" TypeName="Model.Item_MasterItem_Quantity" StoreEntitySet="Item_Master">
+      <EndProperty Name="Item_Quantity">
+        <ScalarProperty Name="Id" ColumnName="Item_Quantity_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LotsItem_Quantity" TypeName="Model.LotsItem_Quantity" StoreEntitySet="Item_Quantity">
+      <EndProperty Name="Lots">
+        <ScalarProperty Name="Id" ColumnName="Lot_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Quantity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Item_MasterItem_Alternates" TypeName="Model.Item_MasterItem_Alternates" StoreEntitySet="Item_Alternates">
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Item_Master_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Alternates">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Item_MasterItem_Images" TypeName="Model.Item_MasterItem_Images" StoreEntitySet="Item_Images">
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Item_Master_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Images">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ContactAddress" TypeName="Model.ContactAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Contact_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Contact_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VendorContact" TypeName="Model.VendorContact" StoreEntitySet="Contacts">
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Vendor_Id" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Vendor_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VendorLots" TypeName="Model.VendorLots" StoreEntitySet="Lots">
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Vendor_Id" />
+      </EndProperty>
+      <EndProperty Name="Lots">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VendorItem_Quantity" TypeName="Model.VendorItem_Quantity" StoreEntitySet="Item_Quantity">
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Vendor_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Quantity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WarehouseAddress" TypeName="Model.WarehouseAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="Warehouse">
+        <ScalarProperty Name="Id" ColumnName="Warehouse_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Warehouse_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WarehouseLocations" TypeName="Model.WarehouseLocations" StoreEntitySet="Locations">
+      <EndProperty Name="Warehouse">
+        <ScalarProperty Name="Id" ColumnName="Warehouse_Id" />
+      </EndProperty>
+      <EndProperty Name="Locations">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WarehouseFloorPlan" TypeName="Model.WarehouseFloorPlan" StoreEntitySet="FloorPlans">
+      <EndProperty Name="Warehouse">
+        <ScalarProperty Name="Id" ColumnName="Warehouse_Id" />
+      </EndProperty>
+      <EndProperty Name="FloorPlan">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationsRack" TypeName="Model.LocationsRack" StoreEntitySet="Racks">
+      <EndProperty Name="Locations">
+        <ScalarProperty Name="Id" ColumnName="Location_Id" />
+      </EndProperty>
+      <EndProperty Name="Rack">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RackShelf" TypeName="Model.RackShelf" StoreEntitySet="Shelves">
+      <EndProperty Name="Rack">
+        <ScalarProperty Name="Id" ColumnName="Rack_Id" />
+      </EndProperty>
+      <EndProperty Name="Shelf">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ShelfBin" TypeName="Model.ShelfBin" StoreEntitySet="Bins">
+      <EndProperty Name="Shelf">
+        <ScalarProperty Name="Id" ColumnName="Shelf_Id" />
+      </EndProperty>
+      <EndProperty Name="Bin">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Item_QuantityBin" TypeName="Model.Item_QuantityBin" StoreEntitySet="Item_QuantityBin">
+      <EndProperty Name="Item_Quantity">
+        <ScalarProperty Name="Id" ColumnName="Item_Quantity_Id" />
+      </EndProperty>
+      <EndProperty Name="Bin">
+        <ScalarProperty Name="Id" ColumnName="Bins_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="POHeaderPODetail" TypeName="Model.POHeaderPODetail" StoreEntitySet="PODetails">
+      <EndProperty Name="POHeader">
+        <ScalarProperty Name="Id" ColumnName="POHeader_Id" />
+      </EndProperty>
+      <EndProperty Name="PODetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="POHeaderVendor" TypeName="Model.POHeaderVendor" StoreEntitySet="POHeaders">
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Vendors_Id" />
+      </EndProperty>
+      <EndProperty Name="POHeader">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PODetailItem_Master" TypeName="Model.PODetailItem_Master" StoreEntitySet="PODetails">
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Item_Master_Id" />
+      </EndProperty>
+      <EndProperty Name="PODetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="POHeaderWarehouse" TypeName="Model.POHeaderWarehouse" StoreEntitySet="Warehouses">
+      <EndProperty Name="POHeader">
+        <ScalarProperty Name="Id" ColumnName="POHeader_Id" />
+      </EndProperty>
+      <EndProperty Name="Warehouse">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientAddress" TypeName="Model.ClientAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Client_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientItem_Master" TypeName="Model.ClientItem_Master" StoreEntitySet="Item_Master">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientPOHeader" TypeName="Model.ClientPOHeader" StoreEntitySet="POHeaders">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="POHeader">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientVendor" TypeName="Model.ClientVendor" StoreEntitySet="Vendors">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientWarehouse" TypeName="Model.ClientWarehouse" StoreEntitySet="Warehouses">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Warehouse">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SalesmanSOHeader" TypeName="Model.SalesmanSOHeader" StoreEntitySet="SOHeaders">
+      <EndProperty Name="Salesman">
+        <ScalarProperty Name="Id" ColumnName="Salesman_Id" />
+      </EndProperty>
+      <EndProperty Name="SOHeader">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SOHeaderSODetail" TypeName="Model.SOHeaderSODetail" StoreEntitySet="SODetails">
+      <EndProperty Name="SOHeader">
+        <ScalarProperty Name="Id" ColumnName="SOHeader_Id" />
+      </EndProperty>
+      <EndProperty Name="SODetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerSOHeader" TypeName="Model.CustomerSOHeader" StoreEntitySet="Customers">
+      <EndProperty Name="SOHeader">
+        <ScalarProperty Name="Id" ColumnName="SOHeaders_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientSalesman" TypeName="Model.ClientSalesman" StoreEntitySet="Salesmen">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Salesman">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientCustomer" TypeName="Model.ClientCustomer" StoreEntitySet="Customers">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerAddress" TypeName="Model.CustomerAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Customer_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Customer_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerContact" TypeName="Model.CustomerContact" StoreEntitySet="Contacts">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Customer_Id" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Customer_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientUsers" TypeName="Model.ClientUsers" StoreEntitySet="Users">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="POHeaderReceiving" TypeName="Model.POHeaderReceiving" StoreEntitySet="Receivings">
+      <EndProperty Name="POHeader">
+        <ScalarProperty Name="Id" ColumnName="POHeader_Id" />
+      </EndProperty>
+      <EndProperty Name="Receiving">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SalesmanCustomer" TypeName="Model.SalesmanCustomer" StoreEntitySet="Customers">
+      <EndProperty Name="Salesman">
+        <ScalarProperty Name="Id" ColumnName="Salesman_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerNotes" TypeName="Model.CustomerNotes" StoreEntitySet="Notes">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Customer_Id" />
+      </EndProperty>
+      <EndProperty Name="Notes">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SalesmanReminder" TypeName="Model.SalesmanReminder" StoreEntitySet="Reminders">
+      <EndProperty Name="Salesman">
+        <ScalarProperty Name="Id" ColumnName="Salesman_Id" />
+      </EndProperty>
+      <EndProperty Name="Reminder">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SalesmanContact" TypeName="Model.SalesmanContact" StoreEntitySet="Contacts">
+      <EndProperty Name="Salesman">
+        <ScalarProperty Name="Id" ColumnName="Salesman_Id" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Salesman_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsersRoles" TypeName="Model.UsersRoles" StoreEntitySet="Roles">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientOptions1" TypeName="Model.ClientOptions" StoreEntitySet="Options">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Options">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Item_MasterSODetail" TypeName="Model.Item_MasterSODetail" StoreEntitySet="SODetails">
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Item_Master_Id" />
+      </EndProperty>
+      <EndProperty Name="SODetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Item_MasterItem_Pricing" TypeName="Model.Item_MasterItem_Pricing" StoreEntitySet="Item_Pricing">
+      <EndProperty Name="Item_Master">
+        <ScalarProperty Name="Id" ColumnName="Item_Master_Id" />
+      </EndProperty>
+      <EndProperty Name="Item_Pricing">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsersContact" TypeName="Model.UsersContact" StoreEntitySet="Contacts">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientContact" TypeName="Model.ClientContact" StoreEntitySet="Contacts">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Client_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VendorAddress" TypeName="Model.VendorAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Vendor_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Vendor_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Vendor_Template">
+      <EntityTypeMapping TypeName="Model.Vendor_Template">
+        <MappingFragment StoreEntitySet="Vendor_Template">
+          <ScalarProperty Name="Template" ColumnName="Template" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="VendorVendor_Template" TypeName="Model.VendorVendor_Template" StoreEntitySet="Vendor_Template">
+      <EndProperty Name="Vendor_Template">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="Vendor">
+        <ScalarProperty Name="Id" ColumnName="Vendor_Id" />
+      </EndProperty>
+      <Condition ColumnName="Vendor_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
