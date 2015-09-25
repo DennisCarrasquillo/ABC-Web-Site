@@ -1,0 +1,276 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+CATRAN_DATA
+</name>
+</assembly>
+<members>
+<member name="M:CATRAN_DATA.Recordset_Class.#ctor">
+	<summary>
+ New (overloaded) initializes a dummy recordset
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.#ctor(System.Object@,System.Data.DataSet@)">
+	<summary>
+ New (overloaded) initializes a recordset
+ with an insert command and a dataset
+ </summary>
+	<param name="Insertcmd"></param>
+	<param name="objdatasetpassed"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.#ctor(System.Object@,System.Object@)">
+	<summary>
+ New (overloaded) initializes a recordset
+ with an insert command and a dataadapter
+ </summary>
+	<param name="Insertcmd"></param>
+	<param name="objdataadapterpassed"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.Initialize">
+	<summary>
+ Initialize and load the recordset
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.Close">
+	<summary>
+ Close recordset objects
+ </summary>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.Table">
+	<summary>
+ Readonly Get the current table object
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.GetDataview">
+	<summary>
+ Readonly get the current DataView
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.Fields(System.String)">
+	<summary>
+ Simulates the Fields (overloaded) collection
+ </summary>
+	<param name="fieldname"></param>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.Fields(System.Int32)">
+	<summary>
+ Simulates the Fields (overloaded) collection
+ </summary>
+	<param name="index"></param>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.CurrentRow">
+	<summary>
+ Returns the current row
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.FieldIsDefined(System.String)">
+	<summary>
+ FieldIsDefined returns true if the passed field
+ exists in the current dataview
+ </summary>
+	<param name="fieldname"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.Delete">
+	<summary>
+ Delete the current row from the data view
+ the row isn't deleted from the DB until
+ the Update method is invoked
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.Sort(System.String)">
+	<summary>
+ sort the recordset
+ </summary>
+	<param name="Sortkey"></param>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.Count">
+	<summary>
+ return number of rows
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.FieldsCount">
+	<summary>
+ return number of columns
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Recordset_Class.FieldName(System.Int32)">
+	<summary>
+ return field name of column
+ </summary>
+	<param name="column"></param>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:CATRAN_DATA.Recordset_Class">
+	<summary>
+ This class implements the DAO Recordset facility
+ 
+ Properties:
+         FIELDS - Overloaded 
+                  FIELDS(index) returns the field value for the column at index
+                  FIELDS(field name) return the field value for the named field
+         BOF - is table at BOF?
+         EOF - is table at EOF?
+ 
+               IF there are no rows returned both BOF and EOF will be set to true
+ Methods
+         ADDNEW - Add a row
+         EDIT - Modify a row
+         UPDATE - Post changes to the database
+         MOVENEXT - makes the next row the current row
+         MOVEPREV - makes the previous row the current row
+         MOVEFIRST - makes the first row the current row
+         MOVELAST - makes the last row the current row
+         MOVETO - makes the row number passed into the current row
+ </summary>
+	<remarks>Need to add error handling</remarks>
+</member><member name="P:CATRAN_DATA.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:CATRAN_DATA.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:CATRAN_DATA.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:CATRAN_DATA.Database.#ctor">
+	<summary>
+ New (overloaded) with no parameters 
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.#ctor(System.String,System.String)">
+	<summary>
+  New (overloaded) with user supplied database type and connection string
+ </summary>
+	<param name="DBType"></param>
+	<param name="conn_string"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.#ctor(System.String)">
+	<summary>
+  New (overloaded) with user supplied connection string
+ </summary>
+	<param name="conn_string"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Refresh">
+	<summary>
+ Connect to the database and create the recordset
+ </summary>
+	<remarks>
+ Refresh will throw an error if the connection string,
+ database type, or database name 
+ are not set prior to calling Refresh
+</remarks>
+</member><member name="M:CATRAN_DATA.Database.OpenRecordSet">
+	<summary>
+ Simulates the DAO Database.OpenRecordSet Method
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Close">
+	<summary>
+ Close the connection
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Check_Settings">
+	<summary>
+ Check to insure the connection string, 
+ dbname, row source, and dbtype have been set
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Execute(System.String)">
+	<summary>
+ EXECUTE a nonquery 
+ </summary>
+	<param name="EXECString"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.GetSchemaTable">
+	<summary>
+ Get the database schema
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.CheckDatabaseExists(System.String)">
+	<summary>
+ Check to see if a database exists
+ </summary>
+	<param name="databaseName"></param>
+	<returns>Returns true or false</returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.RecordSource">
+	<summary>
+ Get/Set the row source, can be a query, table name, or select statement
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.DataBaseName">
+	<summary>
+ Get/Set the name of the database
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.Connect">
+	<summary>
+ Get/Set the DB connection string
+ The DAO Database.Connect property
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.DataBaseType">
+	<summary>
+ Get/Set the database type
+ Currently SQL and OLE are supported
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.DataAdapter">
+	<summary>
+ Read only, Returns the dataadapter being used
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:CATRAN_DATA.Database">
+	<summary>
+ Implements the DAO Database object
+ 
+ Properties:
+        DataBaseName - Full path to Access Database
+        Connection - Connection string
+        DBName - Name of database (OLE only)
+        RecordSource - Record selection criteria
+        Recordset - Pointer to recordset object
+ 
+ Methods:
+        New (overloaded) - Creates a new instance 
+        Refresh - Open the connection and build the recordset
+        Execute - Execute a nonquery command
+ </summary>
+	<remarks>
+                                 Need to add Error Handling
+ </remarks>
+</member>
+</members>
+</doc>

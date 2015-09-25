@@ -7,9 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using ABC_Inventory;
 using ABC_Inventory.Models;
 using ClientDB;
+using CATRAN_DATA;
 namespace ABC_Inventory.Controllers
 {
     public class ClientsController : Controller
@@ -175,8 +177,8 @@ namespace ABC_Inventory.Controllers
                 Session["ParentId"] = client.Id.ToString();
             }
             catch (DbEntityValidationException e)
-            {
-                return;
+            {               
+                 return;
             }
 
         }
@@ -232,11 +234,18 @@ namespace ABC_Inventory.Controllers
             db.Users.Add(user);
 
             db.SaveChanges();
-            bool ret = Create_DataBase(user.UserId);
+            bool ret = Create_DataBase(user.UserId, user.Password);
             return RedirectToAction("Index", "Home");        
         }
-        private bool Create_DataBase(string UserId)
+        private bool Create_DataBase(string UserId, string Password)
         {
+            string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
+            string dbname = "ABC" + UserId + "DB";
+            script = script.Replace("ABCInventory", dbname).Replace("&UserId",UserId).Replace("&Password",Password);
+            string connstring = "";
+            CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", connstring);
+            newDB.Execute(script);
+            newDB.Close();
             return true;
         }
 
