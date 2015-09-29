@@ -277,7 +277,7 @@ namespace ABC_Inventory.Controllers
             if (userviewmodel.Fax == null)
                 userviewmodel.Fax = "";
             contact.Fax = userviewmodel.Fax;
-            contact.Gender = userviewmodel.Gender;
+            //contact.Gender = userviewmodel.Gender;
             contact.Phone = userviewmodel.Phone;
             contact.Title = userviewmodel.Title;
             user.Contacts.Add(contact);
@@ -296,14 +296,17 @@ namespace ABC_Inventory.Controllers
         }
         private bool Create_DataBase(string UserId, string Password)
         {
-            string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
+            string defineDB = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
+            string defineTables = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
             string dbname = "ABC" + UserId + "DB";
-            script = script.Replace("ABCInventory", dbname).Replace("&UserId",UserId).Replace("&Password",Password);
+            defineTables = defineTables.Replace("ABCInventory", dbname).Replace("&UserId",UserId).Replace("&Password",Password);
+            defineDB = defineDB.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
             string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
             CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
             try
             {
-                newDB.Execute(script);
+                newDB.Execute(defineDB);
+                newDB.Execute(defineTables);
             }
             catch (Exception ex)
             {
