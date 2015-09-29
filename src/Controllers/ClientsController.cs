@@ -7,12 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.IO;
 using ABC_Inventory;
 using ABC_Inventory.Models;
 using ClientDB;
-using CATRAN_DATA;
-using System.Configuration;
 namespace ABC_Inventory.Controllers
 {
     public class ClientsController : Controller
@@ -120,12 +117,7 @@ namespace ABC_Inventory.Controllers
         {
            Client client;
             client = (clientview.Id > 0) ? db.Clients.Find(clientview.Id) :  client = new Client();
-            client.changedFlag = true;
-            if (clientview.Id == 0)
-            {
-                client.InActive = false;
-                client.changedFlag = false;
-            }
+
             client.Clientname = clientview.Clientname;
             client.Description = clientview.Description;
             client.CageCode = clientview.CageCode;
@@ -161,39 +153,14 @@ namespace ABC_Inventory.Controllers
              }
             else
             {
-                string productKey = Guid.NewGuid().ToString();
                 License lic =  new License();
                 lic.Maximum_Installs = 1;
                 lic.Current_Installs = 0;
                 lic.Cost = 0;
                 lic.Period = 0;
                 lic.DueDate = DateTime.Now.AddMonths(1);
-                lic.ProductKey = productKey;
-                lic.SystemName = "ABCInventory";
-                lic.SubSystem = "Item";
+                lic.ProductKey = Guid.NewGuid().ToString();
                 client.Licenses.Add(lic);
-
-                if (clientview.Purchasing)
-                {
-                    License plic = new License();
-                    lic.CopyPropertiesTo<License, License>(plic);
-                    plic.SubSystem = "Purchasing";
-                    client.Licenses.Add(plic);
-                }
-                if (clientview.Sales)
-                {
-                    License slic = new License();
-                    lic.CopyPropertiesTo<License, License>(slic);
-                    slic.SubSystem = "Sales";
-                    client.Licenses.Add(slic);
-                }
-                if (clientview.Purchasing)
-                {
-                    License wlic = new License();
-                    lic.CopyPropertiesTo<License, License>(wlic);
-                    wlic.SubSystem = "Warehouse";
-                    client.Licenses.Add(wlic);
-                }
                 client.Addresses.Add(address);
                 opts.Demo = true;
                 opts.ExpDate = DateTime.Now.AddMonths(1);
@@ -205,12 +172,11 @@ namespace ABC_Inventory.Controllers
             try
             {
                 db.SaveChanges();
-                db.Entry(client).GetDatabaseValues();
                 Session["ParentId"] = client.Id.ToString();
             }
             catch (DbEntityValidationException e)
-            {               
-                 return;
+            {
+                return;
             }
 
         }
@@ -246,22 +212,6 @@ namespace ABC_Inventory.Controllers
                 ModelState.AddModelError("User_Password", "Passwords do not match");
                 return View(userviewmodel);
             }
-            if (userviewmodel.Title == null)
-            {
-                ModelState.AddModelError("Title", "Title is required");
-                return View(userviewmodel);
-            }
-            if (userviewmodel.Phone == null)
-            {
-                ModelState.AddModelError("Phone", "Phone is required");
-                return View(userviewmodel);
-            }
-            if (userviewmodel.Email == null)
-            {
-                ModelState.AddModelError("Email", "Email is required");
-                return View(userviewmodel);
-            }
-
             User user = new User();
             user.Client = db.Clients.Find(userviewmodel.ParentId);
             user.Name = userviewmodel.ContactName;
@@ -274,45 +224,19 @@ namespace ABC_Inventory.Controllers
             contact.ContactName = userviewmodel.ContactName;
             contact.ContactType = userviewmodel.ContactType;
             contact.Email = userviewmodel.Email;
-            if (userviewmodel.Fax == null)
-                userviewmodel.Fax = "";
             contact.Fax = userviewmodel.Fax;
-            //contact.Gender = userviewmodel.Gender;
+            contact.Gender = userviewmodel.Gender;
             contact.Phone = userviewmodel.Phone;
             contact.Title = userviewmodel.Title;
             user.Contacts.Add(contact);
             db.Users.Add(user);
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                ModelState.AddModelError("", "Error Updating Information");
-                return View(userviewmodel);
-            }
-            bool ret = Create_DataBase(user.UserId, user.Password);
+
+            db.SaveChanges();
+            bool ret = Create_DataBase(user.UserId);
             return RedirectToAction("Index", "Home");        
         }
-        private bool Create_DataBase(string UserId, string Password)
+        private bool Create_DataBase(string UserId)
         {
-            string defineDB = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
-            string defineTables = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
-            string dbname = "ABC" + UserId + "DB";
-            defineTables = defineTables.Replace("ABCInventory", dbname).Replace("&UserId",UserId).Replace("&Password",Password);
-            defineDB = defineDB.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
-            string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
-            CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
-            try
-            {
-                newDB.Execute(defineDB);
-                newDB.Execute(defineTables);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            newDB.Close();
             return true;
         }
 

@@ -257,8 +257,3 @@ S:\Development\Systems\ABC-Web-Site\src\bin\System.Web.WebPages.xml
 S:\Development\Systems\ABC-Web-Site\src\bin\System.Web.WebPages.Deployment.xml
 S:\Development\Systems\ABC-Web-Site\src\bin\System.Web.WebPages.Razor.xml
 S:\Development\Systems\ABC-Web-Site\src\bin\Microsoft.Web.Infrastructure.xml
-S:\Development\Systems\ABC-Web-Site\src\bin\CATRAN_DATA.dll
-S:\Development\Systems\ABC-Web-Site\src\bin\System.Data.SQLite.dll
-S:\Development\Systems\ABC-Web-Site\src\bin\CATRAN_DATA.pdb
-S:\Development\Systems\ABC-Web-Site\src\bin\CATRAN_DATA.xml
-S:\Development\Systems\ABC-Web-Site\src\bin\System.Data.SQLite.xml
