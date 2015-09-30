@@ -207,6 +207,7 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="Files\ClientDB.sql" />
+    <Content Include="Files\CreateDB.sql" />
     <Content Include="Files\InventoryDB.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -280,6 +281,10 @@
     <ProjectReference Include="..\..\ABC Inventory\ABC-Databases\src\ClientDB\ClientDB.csproj">
       <Project>{9342ed73-9b2a-4c9b-af91-795869824cc2}</Project>
       <Name>ClientDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ABC Inventory\Common\src\CATRAN_DATA\CATRAN_DATA.vbproj">
+      <Project>{8c672903-3b2a-4646-b012-6d70149fb9f3}</Project>
+      <Name>CATRAN_DATA</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ABC Inventory\Common\src\CATRAN_Mail\CATRAN_Mail.vbproj">
       <Project>{b4b31a2a-29d9-46bd-83d5-f02bc946a2d0}</Project>

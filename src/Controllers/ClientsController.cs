@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ABC_Inventory;
 using ABC_Inventory.Models;
 using ClientDB;
+using System.Configuration;
 namespace ABC_Inventory.Controllers
 {
     public class ClientsController : Controller
@@ -232,11 +233,27 @@ namespace ABC_Inventory.Controllers
             db.Users.Add(user);
 
             db.SaveChanges();
-            bool ret = Create_DataBase(user.UserId);
+            bool ret = Create_DataBase(user.UserId, user.Password);
             return RedirectToAction("Index", "Home");        
         }
-        private bool Create_DataBase(string UserId)
+        private bool Create_DataBase(string UserId, string Password)
         {
+
+            string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
+            string dbname = "ABC" + UserId + "DB";
+            script = script.Replace("ABCInventory", dbname).Replace("&UserId",UserId).Replace("&Password",Password);
+            string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
+            CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
+            try
+            {
+                newDB.Execute(script);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            newDB.Close();
+
             return true;
         }
 
