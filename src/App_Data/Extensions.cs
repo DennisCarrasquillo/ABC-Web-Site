@@ -22,12 +22,14 @@ public static class ExtensionMethods
 
         foreach (PropertyInfo destprop in plistdest)
         {
-            var sourceprops = plistsource.Where(p => p.Name == destprop.Name &&
-              destprop.PropertyType.IsAssignableFrom(p.GetType()));
-            foreach (PropertyInfo sourceprop in sourceprops)
-            { // should only be one
+            var sourceprop = plistsource.Where(p => p.Name == destprop.Name).FirstOrDefault();
+            if (sourceprop != null)
+                //if (sourceprop.CanWrite)
+            //foreach (PropertyInfo sourceprop in sourceprops)
+            //{ // should only be one
+
                 destprop.SetValue(dest, sourceprop.GetValue(source, null), null);
-            }
+            //}
         }
     }
 }

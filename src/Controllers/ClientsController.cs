@@ -161,7 +161,30 @@ namespace ABC_Inventory.Controllers
                 lic.Period = 0;
                 lic.DueDate = DateTime.Now.AddMonths(1);
                 lic.ProductKey = Guid.NewGuid().ToString();
+                lic.SystemName = "ABCInventory";
+                lic.SubSystem = "Item";
                 client.Licenses.Add(lic);
+                if (clientview.Purchasing)
+                {
+                    License plic = new License();
+                    lic.CopyPropertiesTo<License, License>(plic);
+                    plic.SubSystem = "Purchasing";
+                    client.Licenses.Add(plic);
+                }
+                if (clientview.Sales)
+                {
+                    License slic = new License();
+                    lic.CopyPropertiesTo<License, License>(slic);
+                    slic.SubSystem = "Sales";
+                    client.Licenses.Add(slic);
+                }
+                if (clientview.Purchasing)
+                {
+                    License wlic = new License();
+                    lic.CopyPropertiesTo<License, License>(wlic);
+                    wlic.SubSystem = "Warehouse";
+                    client.Licenses.Add(wlic);
+                }
                 client.Addresses.Add(address);
                 opts.Demo = true;
                 opts.ExpDate = DateTime.Now.AddMonths(1);
@@ -173,6 +196,7 @@ namespace ABC_Inventory.Controllers
             try
             {
                 db.SaveChanges();
+                db.Entry(client).GetDatabaseValues();
                 Session["ParentId"] = client.Id.ToString();
             }
             catch (DbEntityValidationException e)
@@ -213,6 +237,22 @@ namespace ABC_Inventory.Controllers
                 ModelState.AddModelError("User_Password", "Passwords do not match");
                 return View(userviewmodel);
             }
+            if (userviewmodel.Title == null)
+            {
+                ModelState.AddModelError("Title", "Title is required");
+                return View(userviewmodel);
+            }
+            if (userviewmodel.Phone == null)
+            {
+                ModelState.AddModelError("Phone", "Phone is required");
+                return View(userviewmodel);
+            }
+            if (userviewmodel.Email == null)
+            {
+                ModelState.AddModelError("Email", "Email is required");
+                return View(userviewmodel);
+            }
+
             User user = new User();
             user.Client = db.Clients.Find(userviewmodel.ParentId);
             user.Name = userviewmodel.ContactName;
@@ -225,6 +265,8 @@ namespace ABC_Inventory.Controllers
             contact.ContactName = userviewmodel.ContactName;
             contact.ContactType = userviewmodel.ContactType;
             contact.Email = userviewmodel.Email;
+            if (userviewmodel.Fax == null)
+                userviewmodel.Fax = "";
             contact.Fax = userviewmodel.Fax;
             contact.Gender = userviewmodel.Gender;
             contact.Phone = userviewmodel.Phone;
@@ -232,20 +274,37 @@ namespace ABC_Inventory.Controllers
             user.Contacts.Add(contact);
             db.Users.Add(user);
 
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                ModelState.AddModelError("", "Error Updating Information");
+                return View(userviewmodel);
+            }
             bool ret = Create_DataBase(user.UserId, user.Password);
             return RedirectToAction("Index", "Home");        
         }
+        public ActionResult DemoDB()
+        {
+            ActiveUser AU = (ActiveUser) Session["ActiveUser"];
+            Create_DataBase(AU.UserId, AU.Password);
+            return RedirectToAction("Index", "Home");                    
+        }
         private bool Create_DataBase(string UserId, string Password)
         {
+            string createscript = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
 
             string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
             string dbname = "ABC" + UserId + "DB";
-            script = script.Replace("ABCInventory", dbname).Replace("&UserId",UserId).Replace("&Password",Password);
+            createscript = createscript.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            script = script.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
             string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
             CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
             try
             {
+                newDB.Execute(createscript);
                 newDB.Execute(script);
             }
             catch (Exception ex)
@@ -318,6 +377,7 @@ namespace ABC_Inventory.Controllers
                 ActiveUser AU = new ActiveUser();
                 AU.ClientId = uinfo.Client.Id;
                 AU.UserId = model.UserID;
+                AU.Password = model.Password;
                 Contact contact = uinfo.Contacts.FirstOrDefault();
                 AU.UserName = contact.ContactName;
 
