@@ -381,31 +381,6 @@ namespace ABC_Inventory.Controllers
                 Contact contact = uinfo.Contacts.FirstOrDefault();
                 AU.UserName = contact.ContactName;
 
-                //foreach (Roles R in uinfo.Roles)
-                //{
-                //    switch (R.SubSystem)
-                //    {
-                //        case SubSystem_Types.Purchasing:
-                //            AU.PurchasingRole = R.Role;
-                //            break;
-                //        case SubSystem_Types.Sales:
-                //            AU.SalesRole = R.Role;
-                //            break;
-                //        case SubSystem_Types.Warehouse:
-                //            AU.WarehouseRole = R.Role;
-                //            break;
-                //        case SubSystem_Types.Item:
-                //            AU.ItemRole = R.Role;
-                //            break;
-                //        case SubSystem_Types.admin:
-                //            AU.UserRole = (int) SubSystem_Types.admin;
-                //            break;
-                //        case SubSystem_Types.Master:
-                //            AU.UserRole = (int)SubSystem_Types.Master;
-                //            break;
-                //    }
-                //}
-
                 Session["ActiveUser"] = AU;
                 Session.Timeout = 120;
                 Response.Redirect("~/Home/Index", false);
@@ -413,10 +388,12 @@ namespace ABC_Inventory.Controllers
             return View(model);
         }
 
-        public ActionResult LogOut(LoginViewModel model)
+        public ActionResult LogOut()
         {
             Session["ActiveUser"] = null;
-            RedirectToAction("Index", "Home");
+            Response.Redirect("~/Home/Index", false);
+
+            //RedirectToAction("Index", "Home");
             return View();
         }
 

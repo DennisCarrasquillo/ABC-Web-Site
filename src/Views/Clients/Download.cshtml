@@ -12,13 +12,27 @@
 {
     @Html.AntiForgeryToken()
     <br/>
+    <br />
     <table>
         <tr>
+            <td colspan="3">
+                In order to run ABC Inventory you MUST download and install the .NET Framework 4.5. 
+            </td>
+           
+            <td>
+                <a href="/Files/dotNetFx45_Full_setup.exe"><img src="/images/download.jpg" /></a>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="4">ABC Inventory</td>
             <td>
                 @Html.Label("Maximum Installs:", htmlAttributes: new { @class = "control-label" })
             </td>
             <td>
                 @Html.DisplayFor(model => model.MaxInstalls, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+            <td rowspan="4">
+                <a href="/Files/ABCInventory.zip"><img src="/images/download.jpg" /></a>
             </td>
         </tr>
         <tr>
@@ -46,7 +60,5 @@
             </td>
         </tr>
         </table>
-    <br/>
-        <a href="/Files/ABCInventory.zip"><img src="/images/download.jpg" /></a>
-        @*<h3>Version History</h3>*@
+
 }

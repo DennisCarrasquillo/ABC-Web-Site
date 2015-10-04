@@ -4,7 +4,7 @@
     @if (UserProps != null)
     {
         <li class="nav-text" style="display: block">Welcome @UserProps.UserName</li>
-        <li>@Html.ActionLink("Log Out", "LogOut", "Clients")</li>
+        <li>@Html.ActionLink("Log Out", "LogOut", "Clients", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     }
     else
     {
