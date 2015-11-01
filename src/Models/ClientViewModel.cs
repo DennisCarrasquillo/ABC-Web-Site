@@ -21,6 +21,7 @@ namespace ABC_Inventory.Models
         public bool Purchasing { get; set; }
         public bool Sales { get; set; }
         public bool Warehouse { get; set; }
+        public decimal SalesTaxRate { get; set; }
         //public List<SubSystem> SubSystems { get; set; }
     }
 

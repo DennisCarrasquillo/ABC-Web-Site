@@ -97,6 +97,7 @@ namespace ABC_Inventory.Controllers
             clientview.Clientname = client.Clientname;
             clientview.CageCode = client.CageCode;
             clientview.SICCode = client.SICCode;
+            clientview.SalesTaxRate =(decimal) client.SalesTaxRate;
             clientview.CompanyType = (Business_Types) client.CompanyType;
             Option opt = client.Options.FirstOrDefault();
             clientview.Purchasing = (bool)opt.Purchasing;
@@ -124,6 +125,7 @@ namespace ABC_Inventory.Controllers
             client.CageCode = clientview.CageCode;
             client.SICCode = clientview.SICCode;
             client.CompanyType = clientview.CompanyType;
+            client.SalesTaxRate = clientview.SalesTaxRate;
             if (client.Status == null)
                 client.Status = "DEMO";
             client.ExpDate = DateTime.Now.AddMonths(1);
@@ -295,17 +297,21 @@ namespace ABC_Inventory.Controllers
         private bool Create_DataBase(string UserId, string Password)
         {
             string createscript = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
-
             string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
+            string dbdata = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\DemoData.sql"));
+
             string dbname = "ABC" + UserId + "DB";
             createscript = createscript.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
             script = script.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            dbdata = script.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+
             string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
             CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
             try
             {
                 newDB.Execute(createscript);
                 newDB.Execute(script);
+                newDB.Execute(dbdata);
             }
             catch (Exception ex)
             {
