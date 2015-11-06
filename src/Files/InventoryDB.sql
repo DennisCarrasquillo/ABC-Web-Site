@@ -7,6 +7,8 @@ CREATE USER [&UserId] FOR LOGIN [&UserId] WITH DEFAULT_SCHEMA=[dbo]
 ALTER ROLE [db_owner] ADD MEMBER [&UserId]
 
 /****** Object:  Table [dbo].[Addresses]    Script Date: 9/30/2015 9:29:18 AM ******/
+
+/****** Object:  Table [dbo].[Addresses]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -33,7 +35,7 @@ CREATE TABLE [dbo].[Addresses](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Bins]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Bins]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -50,7 +52,7 @@ CREATE TABLE [dbo].[Bins](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Client]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Client]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -66,6 +68,7 @@ CREATE TABLE [dbo].[Client](
 	[CompanyType] [int] NULL,
 	[Description] [varchar](255) NULL,
 	[changedFlag] [bit] NULL CONSTRAINT [DF_Client_changedFlag]  DEFAULT ((0)),
+	[SalesTaxRate] [decimal](18, 4) NULL,
  CONSTRAINT [PK_Clients] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -75,7 +78,7 @@ CREATE TABLE [dbo].[Client](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[ColorStyles]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[ColorStyles]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -95,7 +98,7 @@ CREATE TABLE [dbo].[ColorStyles](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Contacts]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Contacts]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -121,7 +124,7 @@ CREATE TABLE [dbo].[Contacts](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Customer]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -140,6 +143,7 @@ CREATE TABLE [dbo].[Customer](
 	[NAICCode] [varchar](20) NULL,
 	[Account] [varchar](20) NULL,
 	[CreidtLimit] [decimal](18, 2) NULL,
+	[ReSeller] [bit] NULL,
  CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -149,7 +153,7 @@ CREATE TABLE [dbo].[Customer](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[dictionary]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[dictionary]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -158,11 +162,9 @@ SET ANSI_PADDING ON
 
 CREATE TABLE [dbo].[dictionary](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[FieldName] [varchar](20) NOT NULL,
-	[FieldType] [int] NOT NULL,
-	[Iscontainer] [bit] NOT NULL,
-	[MaxLines] [int] NOT NULL,
-	[SubSystem] [int] NOT NULL,
+	[SubSystem] [nvarchar](50) NOT NULL,
+	[TableName] [varchar](50) NOT NULL,
+	[KeryField] [varchar](20) NOT NULL,
  CONSTRAINT [PK_dictionary] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -172,7 +174,7 @@ CREATE TABLE [dbo].[dictionary](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[FloorPlans]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[FloorPlans]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -187,7 +189,7 @@ CREATE TABLE [dbo].[FloorPlans](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[FrequencyDiscounts]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[FrequencyDiscounts]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -204,7 +206,7 @@ CREATE TABLE [dbo].[FrequencyDiscounts](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Item_Alternates]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Item_Alternates]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +223,7 @@ CREATE TABLE [dbo].[Item_Alternates](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Item_Images]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Item_Images]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -237,7 +239,7 @@ CREATE TABLE [dbo].[Item_Images](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Item_Master]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Item_Master]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -264,7 +266,7 @@ CREATE TABLE [dbo].[Item_Master](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Item_Quantity]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Item_Quantity]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -291,7 +293,7 @@ CREATE TABLE [dbo].[Item_Quantity](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Item_QuantityBin]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Item_QuantityBin]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -307,7 +309,7 @@ CREATE TABLE [dbo].[Item_QuantityBin](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Locations]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Locations]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -324,7 +326,7 @@ CREATE TABLE [dbo].[Locations](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Lots]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Lots]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -341,7 +343,7 @@ CREATE TABLE [dbo].[Lots](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Note]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Note]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -359,7 +361,7 @@ CREATE TABLE [dbo].[Note](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[PODetails]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[PODetails]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -368,6 +370,7 @@ SET ANSI_PADDING ON
 
 CREATE TABLE [dbo].[PODetails](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ItemNumber] [nvarchar](50) NULL,
 	[Quantity] [int] NOT NULL,
 	[Cost] [decimal](18, 6) NOT NULL,
 	[POHeader_Id] [int] NOT NULL,
@@ -386,7 +389,7 @@ CREATE TABLE [dbo].[PODetails](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[POHeaders]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[POHeaders]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -397,6 +400,8 @@ CREATE TABLE [dbo].[POHeaders](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Status] [nvarchar](12) NOT NULL,
 	[Vendors_Id] [int] NOT NULL,
+	[Vendor_LocationId] [int] NULL,
+	[Vendor_ContactId] [int] NULL,
 	[PONumber] [varchar](20) NULL,
 	[PODate] [date] NULL,
 	[BillTo_LocationId] [int] NULL,
@@ -412,7 +417,7 @@ CREATE TABLE [dbo].[POHeaders](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[PricingBasis]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[PricingBasis]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -430,7 +435,7 @@ CREATE TABLE [dbo].[PricingBasis](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[PurchaseHistory]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[PurchaseHistory]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -454,7 +459,7 @@ CREATE TABLE [dbo].[PurchaseHistory](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[PurchasePending]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[PurchasePending]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -480,7 +485,7 @@ CREATE TABLE [dbo].[PurchasePending](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Racks]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Racks]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -498,7 +503,7 @@ CREATE TABLE [dbo].[Racks](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Reminders]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Reminders]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -509,6 +514,8 @@ CREATE TABLE [dbo].[Reminders](
 	[ReminderDateTime] [datetime] NOT NULL,
 	[ReminderType] [int] NOT NULL,
 	[Salesman_Id] [int] NOT NULL,
+	[EndDateTime] [datetime] NULL,
+	[pattern] [int] NULL,
  CONSTRAINT [PK_Reminders] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -516,7 +523,7 @@ CREATE TABLE [dbo].[Reminders](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Reports]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Reports]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -525,6 +532,7 @@ CREATE TABLE [dbo].[Reports](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[ReportName] [nvarchar](120) NOT NULL,
 	[SubSystem] [nvarchar](20) NOT NULL,
+	[ReportFileName] [nvarchar](128) NULL,
  CONSTRAINT [PK_Reports] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -532,7 +540,7 @@ CREATE TABLE [dbo].[Reports](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[SalesHistories]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[SalesHistories]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -558,14 +566,15 @@ CREATE TABLE [dbo].[SalesHistories](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Salesmen]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Salesmen]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
 
 CREATE TABLE [dbo].[Salesmen](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Commission] [decimal](18, 0) NOT NULL,
+	[Commission] [decimal](18, 4) NOT NULL,
+	[User_Id] [int] NULL,
  CONSTRAINT [PK_Salesmen] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -573,7 +582,7 @@ CREATE TABLE [dbo].[Salesmen](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[SalesPending]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[SalesPending]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -593,6 +602,7 @@ CREATE TABLE [dbo].[SalesPending](
 	[Quantity_Id] [int] NULL,
 	[Customer_Id] [int] NULL,
 	[Vendor_Id] [int] NULL,
+	[LotNumber] [nvarchar](50) NULL,
  CONSTRAINT [PK_SalesPending] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -602,7 +612,7 @@ CREATE TABLE [dbo].[SalesPending](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Settings]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Settings]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -621,7 +631,7 @@ CREATE TABLE [dbo].[Settings](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Shelves]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Shelves]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -638,7 +648,7 @@ CREATE TABLE [dbo].[Shelves](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[SODetails]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[SODetails]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -649,6 +659,11 @@ CREATE TABLE [dbo].[SODetails](
 	[Quantity] [int] NOT NULL,
 	[SOHeader_Id] [int] NOT NULL,
 	[Item_Master_Id] [int] NOT NULL,
+	[UnitCost] [decimal](18, 6) NULL,
+	[DateCode] [nvarchar](20) NULL,
+	[LotNumber] [nvarchar](20) NULL,
+	[VendorId] [int] NULL,
+	[Manufacturer] [nvarchar](50) NULL,
  CONSTRAINT [PK_SODetails] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -656,16 +671,18 @@ CREATE TABLE [dbo].[SODetails](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[SOHeaders]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[SOHeaders]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
 
 CREATE TABLE [dbo].[SOHeaders](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[SONumber] [int] NOT NULL,
+	[SONumber] [nvarchar](20) NOT NULL,
 	[Salesman_Id] [int] NOT NULL,
 	[Customer_Id] [int] NOT NULL,
+	[SaleDate] [datetime] NULL,
+	[SalesTax] [decimal](18, 2) NULL,
  CONSTRAINT [PK_SOHeaders] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -673,7 +690,7 @@ CREATE TABLE [dbo].[SOHeaders](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[States]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[States]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -689,7 +706,7 @@ CREATE TABLE [dbo].[States](
 ) ON [PRIMARY]
 
 
-/****** Object:  Table [dbo].[Template_Document]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Template_Document]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -699,7 +716,7 @@ SET ANSI_PADDING ON
 CREATE TABLE [dbo].[Template_Document](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[TemplateName] [varchar](64) NOT NULL,
-	[Subsystem] [int] NOT NULL,
+	[Subsystem] [nvarchar](20) NOT NULL,
 	[HeaderTemplate] [varchar](max) NOT NULL,
 	[Image] [varchar](max) NULL,
 	[DefaultFont] [varchar](128) NULL,
@@ -714,7 +731,7 @@ CREATE TABLE [dbo].[Template_Document](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Template_Item]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Template_Item]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -736,7 +753,7 @@ CREATE TABLE [dbo].[Template_Item](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Users]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -759,7 +776,7 @@ CREATE TABLE [dbo].[Users](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Vendors]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Vendors]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -786,7 +803,7 @@ CREATE TABLE [dbo].[Vendors](
 
 SET ANSI_PADDING OFF
 
-/****** Object:  Table [dbo].[Warehouses]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Table [dbo].[Warehouses]    Script Date: 11/2/2015 8:53:18 AM ******/
 SET ANSI_NULLS ON
 
 SET QUOTED_IDENTIFIER ON
@@ -802,223 +819,223 @@ CREATE TABLE [dbo].[Warehouses](
 ) ON [PRIMARY]
 
 
-/****** Object:  Index [IX_FK_ContactAddress]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_ContactAddress]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_ContactAddress] ON [dbo].[Addresses]
 (
 	[Contact_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_CustomerAddress]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_CustomerAddress]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_CustomerAddress] ON [dbo].[Addresses]
 (
 	[Customer_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_VendorAddress]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_VendorAddress]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_VendorAddress] ON [dbo].[Addresses]
 (
 	[Vendor_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_WarehouseAddress]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_WarehouseAddress]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_WarehouseAddress] ON [dbo].[Addresses]
 (
 	[Warehouse_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_ShelfBin]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_ShelfBin]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_ShelfBin] ON [dbo].[Bins]
 (
 	[Shelf_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_CustomerContact]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_CustomerContact]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_CustomerContact] ON [dbo].[Contacts]
 (
 	[Customer_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_SalesmanContact]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_SalesmanContact]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_SalesmanContact] ON [dbo].[Contacts]
 (
 	[Salesman_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_UsersContact]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_UsersContact]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_UsersContact] ON [dbo].[Contacts]
 (
 	[User_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_VendorContact]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_VendorContact]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_VendorContact] ON [dbo].[Contacts]
 (
 	[Vendor_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_CustomerSOHeader]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_CustomerSOHeader]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_CustomerSOHeader] ON [dbo].[Customer]
 (
 	[SOHeaders_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_SalesmanCustomer]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_SalesmanCustomer]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_SalesmanCustomer] ON [dbo].[Customer]
 (
 	[Salesman_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_WarehouseFloorPlan]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_WarehouseFloorPlan]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_WarehouseFloorPlan] ON [dbo].[FloorPlans]
 (
 	[Warehouse_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterFrequencyDiscounts]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterFrequencyDiscounts]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterFrequencyDiscounts] ON [dbo].[FrequencyDiscounts]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterItem_Alternates]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterItem_Alternates]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterItem_Alternates] ON [dbo].[Item_Alternates]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterItem_Images]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterItem_Images]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterItem_Images] ON [dbo].[Item_Images]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterItem_Quantity]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterItem_Quantity]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterItem_Quantity] ON [dbo].[Item_Quantity]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_LotsItem_Quantity]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_LotsItem_Quantity]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_LotsItem_Quantity] ON [dbo].[Item_Quantity]
 (
 	[Lot_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_VendorItem_Quantity]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_VendorItem_Quantity]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_VendorItem_Quantity] ON [dbo].[Item_Quantity]
 (
 	[Vendor_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_QuantityBin_Bin]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_QuantityBin_Bin]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_QuantityBin_Bin] ON [dbo].[Item_QuantityBin]
 (
 	[Bins_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_WarehouseLocations]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_WarehouseLocations]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_WarehouseLocations] ON [dbo].[Locations]
 (
 	[Warehouse_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_VendorLots]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_VendorLots]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_VendorLots] ON [dbo].[Lots]
 (
 	[Vendor_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_CustomerNotes]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_CustomerNotes]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_CustomerNotes] ON [dbo].[Note]
 (
 	[Customer_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_PODetailItem_Master]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_PODetailItem_Master]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_PODetailItem_Master] ON [dbo].[PODetails]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_POHeaderPODetail]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_POHeaderPODetail]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_POHeaderPODetail] ON [dbo].[PODetails]
 (
 	[POHeader_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_POHeaderVendor]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_POHeaderVendor]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_POHeaderVendor] ON [dbo].[POHeaders]
 (
 	[Vendors_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterPricingBasis]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterPricingBasis]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterPricingBasis] ON [dbo].[PricingBasis]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterPurchseHistory]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterPurchseHistory]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterPurchseHistory] ON [dbo].[PurchaseHistory]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_VendorPurchseHistory]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_VendorPurchseHistory]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_VendorPurchseHistory] ON [dbo].[PurchaseHistory]
 (
 	[Vendor_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_LocationsRack]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_LocationsRack]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_LocationsRack] ON [dbo].[Racks]
 (
 	[Location_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_SalesmanReminder]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_SalesmanReminder]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_SalesmanReminder] ON [dbo].[Reminders]
 (
 	[Salesman_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterSalesHistory]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterSalesHistory]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterSalesHistory] ON [dbo].[SalesHistories]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_RackShelf]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_RackShelf]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_RackShelf] ON [dbo].[Shelves]
 (
 	[Rack_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_Item_MasterSODetail]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_Item_MasterSODetail]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_Item_MasterSODetail] ON [dbo].[SODetails]
 (
 	[Item_Master_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_SOHeaderSODetail]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_SOHeaderSODetail]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_SOHeaderSODetail] ON [dbo].[SODetails]
 (
 	[SOHeader_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_SalesmanSOHeader]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_SalesmanSOHeader]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_SalesmanSOHeader] ON [dbo].[SOHeaders]
 (
 	[Salesman_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_VendorVendor_Template]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_VendorVendor_Template]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_VendorVendor_Template] ON [dbo].[Template_Item]
 (
 	[Vendor_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-/****** Object:  Index [IX_FK_POHeaderWarehouse]    Script Date: 9/30/2015 9:29:18 AM ******/
+/****** Object:  Index [IX_FK_POHeaderWarehouse]    Script Date: 11/2/2015 8:53:18 AM ******/
 CREATE NONCLUSTERED INDEX [IX_FK_POHeaderWarehouse] ON [dbo].[Warehouses]
 (
 	[POHeader_Id] ASC
@@ -1058,11 +1075,6 @@ ALTER TABLE [dbo].[Contacts]  WITH CHECK ADD  CONSTRAINT [FK_CustomerContacts] F
 REFERENCES [dbo].[Customer] ([Id])
 
 ALTER TABLE [dbo].[Contacts] CHECK CONSTRAINT [FK_CustomerContacts]
-
-ALTER TABLE [dbo].[Contacts]  WITH CHECK ADD  CONSTRAINT [FK_SalesmanContact] FOREIGN KEY([Salesman_Id])
-REFERENCES [dbo].[Salesmen] ([Id])
-
-ALTER TABLE [dbo].[Contacts] CHECK CONSTRAINT [FK_SalesmanContact]
 
 ALTER TABLE [dbo].[Contacts]  WITH CHECK ADD  CONSTRAINT [FK_UsersContact] FOREIGN KEY([User_Id])
 REFERENCES [dbo].[Users] ([Id])
@@ -1209,20 +1221,15 @@ REFERENCES [dbo].[Item_Master] ([Id])
 
 ALTER TABLE [dbo].[SalesHistories] CHECK CONSTRAINT [FK_Item_MasterSalesHistory]
 
-ALTER TABLE [dbo].[SalesHistories]  WITH CHECK ADD  CONSTRAINT [FK_SalesHistories_SalesHistories] FOREIGN KEY([Id])
-REFERENCES [dbo].[SalesHistories] ([Id])
-
-ALTER TABLE [dbo].[SalesHistories] CHECK CONSTRAINT [FK_SalesHistories_SalesHistories]
-
-ALTER TABLE [dbo].[SalesHistories]  WITH CHECK ADD  CONSTRAINT [FK_Salesman_SalesHistories] FOREIGN KEY([SalesmanId])
-REFERENCES [dbo].[Salesmen] ([Id])
-
-ALTER TABLE [dbo].[SalesHistories] CHECK CONSTRAINT [FK_Salesman_SalesHistories]
-
 ALTER TABLE [dbo].[SalesHistories]  WITH CHECK ADD  CONSTRAINT [FK_Vendor_SalesHistories] FOREIGN KEY([VendorId])
 REFERENCES [dbo].[Vendors] ([Id])
 
 ALTER TABLE [dbo].[SalesHistories] CHECK CONSTRAINT [FK_Vendor_SalesHistories]
+
+ALTER TABLE [dbo].[Salesmen]  WITH CHECK ADD  CONSTRAINT [FK_UsersSalesmen] FOREIGN KEY([User_Id])
+REFERENCES [dbo].[Users] ([Id])
+
+ALTER TABLE [dbo].[Salesmen] CHECK CONSTRAINT [FK_UsersSalesmen]
 
 ALTER TABLE [dbo].[SalesPending]  WITH CHECK ADD  CONSTRAINT [FK_CustomerSalesPending] FOREIGN KEY([Customer_Id])
 REFERENCES [dbo].[Customer] ([Id])
@@ -1253,6 +1260,11 @@ ALTER TABLE [dbo].[SODetails]  WITH CHECK ADD  CONSTRAINT [FK_SOHeaderSODetail] 
 REFERENCES [dbo].[SOHeaders] ([Id])
 
 ALTER TABLE [dbo].[SODetails] CHECK CONSTRAINT [FK_SOHeaderSODetail]
+
+ALTER TABLE [dbo].[SOHeaders]  WITH CHECK ADD  CONSTRAINT [FK_CustomerSOHeaders] FOREIGN KEY([Customer_Id])
+REFERENCES [dbo].[Customer] ([Id])
+
+ALTER TABLE [dbo].[SOHeaders] CHECK CONSTRAINT [FK_CustomerSOHeaders]
 
 ALTER TABLE [dbo].[SOHeaders]  WITH CHECK ADD  CONSTRAINT [FK_SalesmanSOHeader] FOREIGN KEY([Salesman_Id])
 REFERENCES [dbo].[Salesmen] ([Id])

@@ -180,7 +180,7 @@ namespace ABC_Inventory.Controllers
                     slic.SubSystem = "Sales";
                     client.Licenses.Add(slic);
                 }
-                if (clientview.Purchasing)
+                if (clientview.Warehouse)
                 {
                     License wlic = new License();
                     lic.CopyPropertiesTo<License, License>(wlic);
