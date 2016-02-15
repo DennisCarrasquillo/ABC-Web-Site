@@ -3,12 +3,12 @@
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
 -- Date Created: 01/01/2015 23:33:36
--- Generated from EDMX file: C:\Users\dennis\Desktop\New Inventory System\ABC-Inventory-mvc\ABC-Inventory\ABC-Inventory\Client.edmx
+-- Generated from EDMX file: C:\Users\dennis\Desktop\New Inventory System\BLS-Inventory-mvc\BLS-Inventory\BLS-Inventory\Client.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [ABC_Client];
+USE [BLS_Client];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO

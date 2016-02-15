@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ABC_Inventory.Models;
+using BLS_Inventory.Models;
 using ClientDB;
 using CATRAN_Mail;
 
-namespace ABC_Inventory.Controllers
+namespace BLS_Inventory.Controllers
 {
     public class MailController : Controller
     {
-        private ABC_ClientEntities1 db = new ABC_ClientEntities1();
+        private BLS_ClientEntities1 db = new BLS_ClientEntities1();
         // GET: Contact
         public ActionResult MailView()
         {

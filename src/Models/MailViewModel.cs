@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ClientDB;
-namespace ABC_Inventory.Models
+namespace BLS_Inventory.Models
 {
     public class MailViewModel 
     {

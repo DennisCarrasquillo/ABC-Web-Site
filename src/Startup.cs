@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(ABC_Inventory.Startup))]
-namespace ABC_Inventory
+[assembly: OwinStartupAttribute(typeof(BLS_Inventory.Startup))]
+namespace BLS_Inventory
 {
     public partial class Startup
     {

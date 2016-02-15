@@ -1,4 +1,4 @@
-USE [ABCInventory]
+USE [BLSInventory]
 
 CREATE LOGIN &UserId WITH PASSWORD='&Password'
 
@@ -1288,5 +1288,5 @@ ALTER TABLE [dbo].[Warehouses] CHECK CONSTRAINT [FK_POHeaderWarehouse]
 
 USE [master]
 
-ALTER DATABASE [ABCInventory] SET  READ_WRITE 
+ALTER DATABASE [BLSInventory] SET  READ_WRITE 
 

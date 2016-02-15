@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace ABC_Inventory
+namespace BLS_Inventory
 {
     public static class WebApiConfig
     {

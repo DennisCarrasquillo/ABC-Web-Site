@@ -7,9 +7,9 @@ using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using System;
-using ABC_Inventory.Models;
+using BLS_Inventory.Models;
 
-namespace ABC_Inventory
+namespace BLS_Inventory
 {
     public partial class Startup
     {

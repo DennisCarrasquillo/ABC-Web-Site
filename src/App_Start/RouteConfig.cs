@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ABC_Inventory
+namespace BLS_Inventory
 {
     public class RouteConfig
     {

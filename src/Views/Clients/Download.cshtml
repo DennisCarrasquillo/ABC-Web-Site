@@ -1,7 +1,7 @@
-﻿@model ABC_Inventory.Models.DownloadViewModel
+﻿@model BLS_Inventory.Models.DownloadViewModel
 
 @{
-    ViewBag.Title = "Down Load ABC Inventory System";
+    ViewBag.Title = "Down Load BLS Inventory System";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br/>
@@ -16,7 +16,7 @@
     <table>
         <tr>
             <td colspan="3">
-                In order to run ABC Inventory you MUST download and install the .NET Framework 4.5. 
+                In order to run BLS Inventory you MUST download and install the .NET Framework 4.5. 
             </td>
            
             <td>
@@ -24,7 +24,7 @@
             </td>
         </tr>
         <tr>
-            <td rowspan="4">ABC Inventory</td>
+            <td rowspan="4">BLS Inventory</td>
             <td>
                 @Html.Label("Maximum Installs:", htmlAttributes: new { @class = "control-label" })
             </td>
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(model => model.MaxInstalls, new { htmlAttributes = new { @class = "form-control" } })
             </td>
             <td rowspan="4">
-                <a href="/Files/ABCInventory.zip"><img src="/images/download.jpg" /></a>
+                <a href="/Files/BLSInventory.zip"><img src="/images/download.jpg" /></a>
             </td>
         </tr>
         <tr>

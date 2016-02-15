@@ -7,16 +7,16 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ABC_Inventory;
-using ABC_Inventory.Models;
+using BLS_Inventory;
+using BLS_Inventory.Models;
 using ClientDB;
 using System.Configuration;
-namespace ABC_Inventory.Controllers
+namespace BLS_Inventory.Controllers
 {
     public class ClientsController : Controller
     {
         
-        private ABC_ClientEntities1 db = new ABC_ClientEntities1(); 
+        private BLS_ClientEntities1 db = new BLS_ClientEntities1(); 
         
        
         // GET: Clients
@@ -163,7 +163,7 @@ namespace ABC_Inventory.Controllers
                 lic.Period = 0;
                 lic.DueDate = DateTime.Now.AddMonths(1);
                 lic.ProductKey = Guid.NewGuid().ToString();
-                lic.SystemName = "ABCInventory";
+                lic.SystemName = "BLSInventory";
                 lic.SubSystem = "Item";
                 client.Licenses.Add(lic);
                 if (clientview.Purchasing)
@@ -223,7 +223,7 @@ namespace ABC_Inventory.Controllers
         [HttpPost]
         public ActionResult UserView(UserViewModel userviewmodel)
         {          
-            using (var userinfo = new ABC_ClientEntities1())
+            using (var userinfo = new BLS_ClientEntities1())
             {
                 var uinfo = (from u in userinfo.Users
                                     where u.UserId == userviewmodel.UserID
@@ -300,10 +300,10 @@ namespace ABC_Inventory.Controllers
             string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
             string dbdata = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\DemoData.sql"));
 
-            string dbname = "ABC" + UserId + "DB";
-            createscript = createscript.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
-            script = script.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
-            dbdata = script.Replace("ABCInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            string dbname = "BLS" + UserId + "DB";
+            createscript = createscript.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            script = script.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            dbdata = dbdata.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
 
             string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
             CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);

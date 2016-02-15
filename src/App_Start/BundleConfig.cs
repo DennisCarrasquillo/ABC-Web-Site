@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace ABC_Inventory
+namespace BLS_Inventory
 {
     public class BundleConfig
     {

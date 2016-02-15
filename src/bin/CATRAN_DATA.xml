@@ -6,7 +6,125 @@ CATRAN_DATA
 </name>
 </assembly>
 <members>
-<member name="M:CATRAN_DATA.Recordset_Class.#ctor">
+<member name="M:CATRAN_DATA.Database.#ctor">
+	<summary>
+ New (overloaded) with no parameters 
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.#ctor(System.String,System.String)">
+	<summary>
+  New (overloaded) with user supplied database type and connection string
+ </summary>
+	<param name="DBType"></param>
+	<param name="conn_string"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.#ctor(System.String)">
+	<summary>
+  New (overloaded) with user supplied connection string
+ </summary>
+	<param name="conn_string"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Refresh">
+	<summary>
+ Connect to the database and create the recordset
+ </summary>
+	<remarks>
+ Refresh will throw an error if the connection string,
+ database type, or database name 
+ are not set prior to calling Refresh
+</remarks>
+</member><member name="M:CATRAN_DATA.Database.OpenRecordSet">
+	<summary>
+ Simulates the DAO Database.OpenRecordSet Method
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Close">
+	<summary>
+ Close the connection
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Check_Settings">
+	<summary>
+ Check to insure the connection string, 
+ dbname, row source, and dbtype have been set
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.Execute(System.String)">
+	<summary>
+ EXECUTE a nonquery 
+ </summary>
+	<param name="EXECString"></param>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.GetSchemaTable">
+	<summary>
+ Get the database schema
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CATRAN_DATA.Database.CheckDatabaseExists(System.String)">
+	<summary>
+ Check to see if a database exists
+ </summary>
+	<param name="databaseName"></param>
+	<returns>Returns true or false</returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.RecordSource">
+	<summary>
+ Get/Set the row source, can be a query, table name, or select statement
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.DataBaseName">
+	<summary>
+ Get/Set the name of the database
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.Connect">
+	<summary>
+ Get/Set the DB connection string
+ The DAO Database.Connect property
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.DataBaseType">
+	<summary>
+ Get/Set the database type
+ Currently SQL and OLE are supported
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATRAN_DATA.Database.DataAdapter">
+	<summary>
+ Read only, Returns the dataadapter being used
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:CATRAN_DATA.Database">
+	<summary>
+ Implements the DAO Database object
+ 
+ Properties:
+        DataBaseName - Full path to Access Database
+        Connection - Connection string
+        DBName - Name of database (OLE only)
+        RecordSource - Record selection criteria
+        Recordset - Pointer to recordset object
+ 
+ Methods:
+        New (overloaded) - Creates a new instance 
+        Refresh - Open the connection and build the recordset
+        Execute - Execute a nonquery command
+ </summary>
+	<remarks>
+                                 Need to add Error Handling
+ </remarks>
+</member><member name="M:CATRAN_DATA.Recordset_Class.#ctor">
 	<summary>
  New (overloaded) initializes a dummy recordset
  </summary>
@@ -153,124 +271,6 @@ CATRAN_DATA
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
-</member><member name="M:CATRAN_DATA.Database.#ctor">
-	<summary>
- New (overloaded) with no parameters 
- </summary>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.#ctor(System.String,System.String)">
-	<summary>
-  New (overloaded) with user supplied database type and connection string
- </summary>
-	<param name="DBType"></param>
-	<param name="conn_string"></param>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.#ctor(System.String)">
-	<summary>
-  New (overloaded) with user supplied connection string
- </summary>
-	<param name="conn_string"></param>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.Refresh">
-	<summary>
- Connect to the database and create the recordset
- </summary>
-	<remarks>
- Refresh will throw an error if the connection string,
- database type, or database name 
- are not set prior to calling Refresh
-</remarks>
-</member><member name="M:CATRAN_DATA.Database.OpenRecordSet">
-	<summary>
- Simulates the DAO Database.OpenRecordSet Method
- </summary>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.Close">
-	<summary>
- Close the connection
- </summary>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.Check_Settings">
-	<summary>
- Check to insure the connection string, 
- dbname, row source, and dbtype have been set
- </summary>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.Execute(System.String)">
-	<summary>
- EXECUTE a nonquery 
- </summary>
-	<param name="EXECString"></param>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.GetSchemaTable">
-	<summary>
- Get the database schema
- </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:CATRAN_DATA.Database.CheckDatabaseExists(System.String)">
-	<summary>
- Check to see if a database exists
- </summary>
-	<param name="databaseName"></param>
-	<returns>Returns true or false</returns>
-	<remarks></remarks>
-</member><member name="P:CATRAN_DATA.Database.RecordSource">
-	<summary>
- Get/Set the row source, can be a query, table name, or select statement
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:CATRAN_DATA.Database.DataBaseName">
-	<summary>
- Get/Set the name of the database
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:CATRAN_DATA.Database.Connect">
-	<summary>
- Get/Set the DB connection string
- The DAO Database.Connect property
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:CATRAN_DATA.Database.DataBaseType">
-	<summary>
- Get/Set the database type
- Currently SQL and OLE are supported
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:CATRAN_DATA.Database.DataAdapter">
-	<summary>
- Read only, Returns the dataadapter being used
- </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="T:CATRAN_DATA.Database">
-	<summary>
- Implements the DAO Database object
- 
- Properties:
-        DataBaseName - Full path to Access Database
-        Connection - Connection string
-        DBName - Name of database (OLE only)
-        RecordSource - Record selection criteria
-        Recordset - Pointer to recordset object
- 
- Methods:
-        New (overloaded) - Creates a new instance 
-        Refresh - Open the connection and build the recordset
-        Execute - Execute a nonquery command
- </summary>
-	<remarks>
-                                 Need to add Error Handling
- </remarks>
 </member>
 </members>
 </doc>

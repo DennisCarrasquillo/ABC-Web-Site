@@ -2,12 +2,48 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h2>ABC Inventory Management System ... as easy as ABC</h2>
-    
-    <p>This Next Generation Inventory Management System is an Integrated Suite of Tools that will Enhance and Simplify your Product Management Process.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    <p><h3><a href="@Url.Action("Index", "Home")"></a></h3></p>
+<div>
+    <br /><br />
+    <h2>BLS Inventory Management System</h2>
+    <p>An Inventory Management System designed specifically for the parts distributor.</p>
+    <p>This Next Generation Inventory Management System is an Integrated Suite of Tools that will Enhance and Simplify your Parts Management Process.</p>
+    <h3>BLS Inventory supports:</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <b>Unlimited users</b>
+            <br />            
+            Set each user's individual priveleges based on your company's workflow model.
+            <img src="../../Images/User%20Priveliges%201b%20(Inventory).png" alt="" />
+        </div>
+
+        <div class="col-md-6">
+            <b>Multiple databases</b>
+            <br />
+            <ul>
+                <li>
+                    Demo database
+                    <p>
+                        Test out new versions using our prepopulated databases.<br />
+                        Private Free 30 day trial with sample data.
+                    </p>
+                </li>
+                <li>
+                    Test databases
+                    <p>
+                        Great for training new users and <br />validating new installations.
+
+                    </p>
+                </li>
+                <li>
+                    Live databases
+                    <p>Manage your inventory, purchasing, and sales.</p>
+                </li>
+            </ul>
+            <p>Databases can be hosted on your servers or ours.</p>
+        </div>
+    </div>
+    @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p><h3><a href="@Url.Action("Index", "Home")"></a></h3></p>*@
 </div>
 
 <div class="row">
@@ -16,7 +52,7 @@
         <p>
             Manage the items you sell whether you own them, they are on consignment, or are your supplier's excess inventory.
         </p>
-       @Html.ActionLink("Learn more about Item Management", "Item", "Home")
+        @Html.ActionLink("Learn more about Item Management", "Inventory", "Home")
     </div>
     <div class="col-md-4">
         <h2>Sales Management</h2>
@@ -29,5 +65,5 @@
         <h2>Purchasing Management</h2>
         <p>Mange the products you purchase whether individually or by the truckload. Track consignment items, returns, and even offsite inventory.</p>
         @Html.ActionLink("Learn more about Purchasing Management", "Purchasing", "Home")
-   </div>
+    </div>
 </div>

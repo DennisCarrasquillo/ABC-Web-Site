@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -ABC Inventory Management System</title>
+    <title>@ViewBag.Title -BLS Inventory Management System</title>
      @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -41,12 +41,12 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
               
             </div>
            
-            @{ABC_Inventory.Models.ActiveUser UserProps = (ABC_Inventory.Models.ActiveUser)Session["ActiveUser"];}
+            @{BLS_Inventory.Models.ActiveUser UserProps = (BLS_Inventory.Models.ActiveUser)Session["ActiveUser"];}
 
             <div class="navbar-collapse collapse">
                  <ul class="nav navbar-nav">
                      <li><a href="@Url.Action("Index", "Home")" >
-                             <img src="~/Images/ABClogo.png" height="60" /> </a></li>
+                             <img src="~/Images/BLSlogo.png" height="60" /> </a></li>
                     
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 @if (UserProps == null)
@@ -85,7 +85,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
     <div class="container ">
         <ul class="nav navbar-nav">
             <li class="nav-text">
-                &copy; @DateTime.Now.Year - ABC-Inventory.com
+                &copy; @DateTime.Now.Year - Business Logistics Systems Inc.
             </li>
         </ul>
         <ul class="nav navbar-nav  navbar-right">

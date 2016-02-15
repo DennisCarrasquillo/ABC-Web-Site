@@ -11,7 +11,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using ClientDB;
 
-namespace ABC_Inventory
+namespace BLS_Inventory
 {
     public static class Common
     {

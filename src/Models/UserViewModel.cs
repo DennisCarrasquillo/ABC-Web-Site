@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace ABC_Inventory.Models
+namespace BLS_Inventory.Models
 {
     public class UserViewModel : ContactViewModel
     {
