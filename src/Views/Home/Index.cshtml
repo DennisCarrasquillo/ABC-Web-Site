@@ -2,51 +2,228 @@
     ViewBag.Title = "Home Page";
 }
 
-<div>
+<div><font size="4">
     <br /><br />
     <h2>BLS Inventory Management System</h2>
     <p>An Inventory Management System designed specifically for the parts distributor.</p>
     <p>This Next Generation Inventory Management System is an Integrated Suite of Tools that will Enhance and Simplify your Parts Management Process.</p>
     <h3>BLS Inventory supports:</h3>
-    <div class="row">
-        <div class="col-md-6">
-            <b>Unlimited users</b>
-            <br />            
-            Set each user's individual priveleges based on your company's workflow model.
-            <img src="../../Images/User%20Priveliges%201b%20(Inventory).png" alt="" />
-        </div>
+         <ul>
+             <li>
+                 Fully customizable user access. User access to the various ssytem components (ex. Purchasing, Sales, etc.) can be restricted at the detail level.
+                 YOu can set each user's individual priveleges based on your company's workflow model.
+             </li>
+             <li>
+                 The system administrator can create and assign special databases for testing new versions of BLS Inventory, or creating a demo platform without impacting the
+                 live, production, system.
+             </li>
+             <li>
+                 Licensing at the user, site, or enterpirse level.
+             </li>
+             <li>
+                 Manage In-house inventory, suppplier consignments, and/or supplier's excess inventory.
+             </li>
+             <li>
+                 Categorize you inventory by two levels of category.
+             </li>
+             <li>
+                 Store and display item images.
+             </li>
+             <li>
+                 Display help information anytime by pressing F1.<br/>
+                 <br />
+             </li>
 
-        <div class="col-md-6">
-            <b>Multiple databases</b>
-            <br />
-            <ul>
-                <li>
-                    Demo database
-                    <p>
-                        Test out new versions using our prepopulated databases.<br />
-                        Private Free 30 day trial with sample data.
-                    </p>
-                </li>
-                <li>
-                    Test databases
-                    <p>
-                        Great for training new users and <br />validating new installations.
+<li><b>Bulk Import</b> vendor inventory. <br />
+             <table>
+                 <tr>
+                     <td>
+                         <img src="~/Images/Import.jpg" /><br />
+                     </td>
+                     <td>
+                         <ul>
+                             <li>
+                                 Import inventory by type (ex. Consignment, excess)
+                                 <br />
+                             </li>
+                             <li>
+                                 Store multiple custom import templates by vendor.
+                                 <br />
+                             </li>
+                             <li>
+                                 Export import errors for further analysis in Excel.
+                                 <br />
+                             </li>
+                             <li>
+                                 System generateable lot numbers.
+                                 <br />
+                             </li>
+                             <li>
+                                 Create item categories on-the-fly during import.
+                                 <br />
+                             </li>
+                             <li>
+                                 Preview import data.
+                                 <br />
+                             </li>
+                             <li>
+                                 Undo entire imports.
+                                 <br />
+                             </li>
+                         </ul>
+                     </td>
+                 </tr>
+             </table>
+             <br/><br />
+    </li>
+        <li><b>Bulk Export</b> inventory.<br />
+            <table>
+                <tr>
+                    <td>
+                        <img src="~/Images/Export.jpg" /><br />
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                Export by vendor.
+                                <br />
+                            </li>
+                            <li>
+                                Export by Lot Number.
+                                <br />
+                            </li>
+                            <li>
+                                Export by Inventory Type (ex. Inhouse, consignment, etc.)
+                                <br />
+                            </li>
+                            <li>
+                                Choose the fields you want exported.
+                                <br />
+                            </li>
+                            <li>
+                                Perform multiple export operations simultaneously.
+                            </li>
+                            <li>
+                                Export to an Excel readable .csv format.
+                                <br />
+                            </li>
+                            <li>
+                                Email the exported file.
+                                <br />
+                            </li>
+                            <li>
+                                FTP the exported file to a remote server.
+                                <br />
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <br /><br />
+        </li>
+        <li>
+                 <b>Purchasing</b><br />
+                 <table>
+                     <tr>
+                         <td>
+                             <img src="~/Images/PurchaseOrder.jpg" /><br />
+                         </td>
+                         <td>
+                             <ul>
+                                 <li>
+                                     Maintain full vendor information including multiple locations and multiple contacts.<br />
+                                 </li>
+                                 <li>
+                                     Gather multiple purchase requests for a vendor in a cart.<br />
+                                 </li>
+                                 <li>
+                                     Process receiving partial shipments.<br />
+                                 </li>
+                                 <li>
+                                     Request price quotes from vendors.<br />
+                                 </li>
+                                 <li>
+                                     Track all purchases and quote requests.<br />
+                                 </li>
+                                 <li>
+                                     Process returns of undesirable items.<br />
+                                 </li>
+                                 <li>
+                                     Specify separate ship to and bill to locations.<br/>
+                                 </li>
+                            </ul>
+                     </td>
+                 </tr>
+             </table>
+                 <br/><br />
+        </li>
+        <li>
+                 <b>Sales</b><br />
+                 <table>
+                     <tr>
+                         <td>
+                             <img src="~/Images/SalesOrder.jpg" /><br />
+                         </td>
+                         <td>
+                             <ul>
+                                 <li>
+                                     Maintain detail customer information including multiple locations and multiple contacts.<br />
+                                 </li>
+                                 <li>
+                                     View detail customer purchase and quote history.<br />
+                                 </li>
+                                 <li>
+                                     Assign customers to sales people.<br />
+                                 </li>
+                                 <li>
+                                     Maintain a customer cart.<br />
+                                 </li>
+                            </ul>
+                     </td>
+                 </tr>
+             </table>
+                 <br/>
+       </li>
+  </ul>
+    @*<div class="row">
+            <div class="col-md-6">
+                <b>Unlimited users</b>
+                <br />
+                Set each user's individual priveleges based on your company's workflow model.
+                <img src="../../Images/User%20Priveliges%201b%20(Inventory).png" alt="" />
+            </div>
 
-                    </p>
-                </li>
-                <li>
-                    Live databases
-                    <p>Manage your inventory, purchasing, and sales.</p>
-                </li>
-            </ul>
-            <p>Databases can be hosted on your servers or ours.</p>
-        </div>
-    </div>
+            <div class="col-md-6">
+                <b>Multiple databases</b>
+                <br />
+                <ul>
+                    <li>
+                        Demo database
+                        <p>
+                            Test out new versions using our prepopulated databases.<br />
+                            Private Free 30 day trial with sample data.
+                        </p>
+                    </li>
+                    <li>
+                        Test databases
+                        <p>
+                            Great for training new users and <br />validating new installations.
+
+                        </p>
+                    </li>
+                    <li>
+                        Live databases
+                        <p>Manage your inventory, purchasing, and sales.</p>
+                    </li>
+                </ul>
+                <p>Databases can be hosted on your servers or ours.</p>
+            </div>
+        </div>*@
     @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    <p><h3><a href="@Url.Action("Index", "Home")"></a></h3></p>*@
+        <p><h3><a href="@Url.Action("Index", "Home")"></a></h3></p>*@
 </div>
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <h2>Item Management</h2>
         <p>
@@ -66,4 +243,4 @@
         <p>Mange the products you purchase whether individually or by the truckload. Track consignment items, returns, and even offsite inventory.</p>
         @Html.ActionLink("Learn more about Purchasing Management", "Purchasing", "Home")
     </div>
-</div>
+</div>*@

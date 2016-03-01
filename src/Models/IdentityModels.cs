@@ -29,6 +29,8 @@ namespace BLS_Inventory.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<ABC_Inventory.Models.Marketing.CompanyModel> CompanyModels { get; set; }
+
  
     }
 }

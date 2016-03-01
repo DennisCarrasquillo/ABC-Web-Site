@@ -34,3 +34,10 @@ S:\Development\Systems\BLS-Web-Site\src\bin\Microsoft.Web.Infrastructure.xml
 S:\Development\Systems\BLS-Web-Site\src\obj\Debug\BLS-Inventory.csprojResolveAssemblyReference.cache
 S:\Development\Systems\BLS-Web-Site\src\obj\Debug\ABC-Inventory.dll
 S:\Development\Systems\BLS-Web-Site\src\obj\Debug\ABC-Inventory.pdb
+S:\Development\Systems\BLS-Web-Site\src\bin\ContactsDB.dll
+S:\Development\Systems\BLS-Web-Site\src\bin\ContactsDB.pdb
+S:\Development\Systems\BLS-Web-Site\src\bin\ETLProcess.dll
+S:\Development\Systems\BLS-Web-Site\src\bin\ExelXML.dll
+S:\Development\Systems\BLS-Web-Site\src\bin\ICSharpCode.SharpZipLib.dll
+S:\Development\Systems\BLS-Web-Site\src\bin\ETLProcess.pdb
+S:\Development\Systems\BLS-Web-Site\src\bin\ExelXML.pdb

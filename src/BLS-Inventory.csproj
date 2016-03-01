@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Marketing\CompanyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +196,9 @@
     <Compile Include="Models\MailViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\DownloadViewModel.cs" />
+    <Compile Include="Models\Marketing\CompanyModel.cs" />
+    <Compile Include="Models\Marketing\ContactModel.cs" />
+    <Compile Include="Models\Marketing\ImportModel.cs" />
     <Compile Include="Models\OptionsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,10 +218,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\ABClogo.png" />
+    <Content Include="Images\BLSlogo.jpg" />
     <Content Include="Images\download.jpg" />
+    <Content Include="Images\Export.jpg" />
     <Content Include="Images\Import.jpg" />
     <Content Include="Images\Maintain Inventory.png" />
+    <Content Include="Images\PurchaseOrder.jpg" />
+    <Content Include="Images\SalesOrder.jpg" />
     <Content Include="Images\User Priveliges 1b %28Inventory%29.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -271,9 +278,12 @@
     <Content Include="Views\Home\Inventory.cshtml" />
     <Content Include="Views\Home\Purchasing.cshtml" />
     <Content Include="Views\Home\Sales.cshtml" />
+    <Content Include="Views\Marketing\Company.cshtml" />
+    <Content Include="Views\Marketing\Import.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
+    <Folder Include="ImportFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -290,6 +300,10 @@
       <Project>{9342ed73-9b2a-4c9b-af91-795869824cc2}</Project>
       <Name>ClientDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BLS Inventory\BLS-Databases\src\ContactsDB\ContactsDB\ContactsDB.csproj">
+      <Project>{3dd9ee9c-c288-4ac3-9345-7fe5da0612c8}</Project>
+      <Name>ContactsDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BLS Inventory\Common\src\CATRAN_DATA\CATRAN_DATA.vbproj">
       <Project>{8c672903-3b2a-4646-b012-6d70149fb9f3}</Project>
       <Name>CATRAN_DATA</Name>
@@ -297,6 +311,10 @@
     <ProjectReference Include="..\..\BLS Inventory\Common\src\CATRAN_Mail\CATRAN_Mail.vbproj">
       <Project>{b4b31a2a-29d9-46bd-83d5-f02bc946a2d0}</Project>
       <Name>CATRAN_Mail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BLS Inventory\Common\src\ETLProcess\ETLProcess.csproj">
+      <Project>{4f951539-e427-410d-a3ba-d424e3e7c6de}</Project>
+      <Name>ETLProcess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

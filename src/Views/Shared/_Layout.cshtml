@@ -39,14 +39,14 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
                     <span class="icon-bar"></span>
                 </button>
               
-            </div>
+            </div>mm
            
             @{BLS_Inventory.Models.ActiveUser UserProps = (BLS_Inventory.Models.ActiveUser)Session["ActiveUser"];}
 
             <div class="navbar-collapse collapse">
                  <ul class="nav navbar-nav">
                      <li><a href="@Url.Action("Index", "Home")" >
-                             <img src="~/Images/BLSlogo.png" height="60" /> </a></li>
+                             <img src="~/Images/BLSlogo.jpg" height="60" /> </a></li>
                     
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 @if (UserProps == null)
@@ -70,6 +70,20 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
                              
                          </ul>
                      </li>                                                         
+                }
+                @if (UserProps != null)
+                {
+                    if (UserProps.UserId == "dennis" || UserProps.UserId == "julie" || UserProps.UserId == "BillW")
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" id="dropdownCommonMenu" data-toggle="dropdown">Marketing</a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCommonMenu">
+                                <li role="menuitem">@Html.ActionLink("Import Contacts", "Import", "Marketing")</li>
+                                <li role="menuitem">@Html.ActionLink("Edit Contacts", "Company", "Marketing")</li>
+                                <li role="menuitem">@Html.ActionLink("Create Mailing List", "Mailing", "Marketing")</li>
+                            </ul>
+                        </li>
+                    }
                 }
                 </ul>
                 @Html.Partial("_LoginPartial")
