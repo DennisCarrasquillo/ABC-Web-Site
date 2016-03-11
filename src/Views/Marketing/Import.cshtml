@@ -1,4 +1,4 @@
-﻿@model ABC_Inventory.Models.Marketing.ImportModel
+﻿@model BLS_Inventory.Models.Marketing.ImportModel
 
 @{
     ViewBag.Title = "Import";
@@ -10,7 +10,7 @@
 <div>
     <h4>ImportModel</h4>
     <hr />
-    @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("FileUpload", "Marketing", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary();
         <ol>
@@ -36,6 +36,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.CompaniesImported)
+        </dd>
+        <dt>
+            Companies Duplicated:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompaniesDuplicated)
         </dd>
 
         <dt>

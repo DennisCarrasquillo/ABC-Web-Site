@@ -10,11 +10,53 @@ using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
 using ClientDB;
+using System.Data;
+using System.Data.OleDb;
 
 namespace BLS_Inventory
 {
     public static class Common
     {
+        public static DataTable ExcelToTables(string strFilename)
+        {
+            DataSet myDs = new DataSet();
+            
+            Microsoft.Office.Interop.Excel.Application oXL = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.ApplicationClass app = new Microsoft.Office.Interop.Excel.ApplicationClass();
+            Microsoft.Office.Interop.Excel.Worksheet oSheet;
+            try
+            {
+                string ext = Path.GetExtension(strFilename);
+                bool hasHeaders = false;
+                string HDR = hasHeaders ? "Yes" : "No";
+                string strConn;
+                if (ext.ToLower() == ".xls")
+                {
+                    strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + strFilename + " ;Extended Properties=\"Excel 8.0;HDR=" + HDR + ";IMEX=1\"";
+                    Microsoft.Office.Interop.Excel.WorkbookClass workBook = (Microsoft.Office.Interop.Excel.WorkbookClass)app.Workbooks.Open(strFilename, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                    oSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+                    app.Visible = false;
+
+                    OleDbDataAdapter myCmd = new OleDbDataAdapter("SELECT * FROM [" + oSheet.Name + "$]", strConn);
+                    myCmd.Fill(myDs);
+                }
+
+                if (ext.ToLower() == ".xlsx")
+                {
+                    strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + strFilename + ";Extended Properties=\"Excel 12.0;HDR=NO" + ";IMEX=1\"";
+                    Microsoft.Office.Interop.Excel.WorkbookClass workBook = (Microsoft.Office.Interop.Excel.WorkbookClass)app.Workbooks.Open(strFilename, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                    oSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+                    OleDbDataAdapter myCmd = new OleDbDataAdapter("SELECT * FROM [" + oSheet.Name + "$]", strConn);
+                    myCmd.Fill(myDs);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return myDs.Tables[0];
+        }
+
         public static void CopyProperties(object Source, object Target, bool CopyRecursively)
         {
             PropertyDescriptorCollection sourceProps = TypeDescriptor.GetProperties(Source);

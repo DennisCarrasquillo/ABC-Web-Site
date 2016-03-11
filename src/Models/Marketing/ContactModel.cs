@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using ContactsDB;
 
-namespace ABC_Inventory.Models.Marketing
+namespace BLS_Inventory.Models.Marketing
 {
     public class ContactModel
     {
