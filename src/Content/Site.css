@@ -35,7 +35,7 @@ textarea {
 }
 #topRight
 {
-    top: 70px;
+    top: 120px;
     right: 2px;
 }
 @media (min-width: 1200px) {

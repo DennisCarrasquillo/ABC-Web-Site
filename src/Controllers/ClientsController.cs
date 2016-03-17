@@ -337,8 +337,6 @@ namespace BLS_Inventory.Controllers
             userview.Id = user.Id;
             return View(userview);
         }
-
-
         [HttpPost]
         public ActionResult UserProfile(UserViewModel userview)
         {
@@ -393,7 +391,6 @@ namespace BLS_Inventory.Controllers
             }
             return View(model);
         }
-
         public ActionResult LogOut()
         {
             Session["ActiveUser"] = null;

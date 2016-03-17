@@ -224,10 +224,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\BLSlogo.jpg" />
+    <Content Include="Images\companies.jpg" />
     <Content Include="Images\cutomerservice.jpg" />
     <Content Include="Images\download.jpg" />
     <Content Include="Images\Export.jpg" />
     <Content Include="Images\Import.jpg" />
+    <Content Include="Images\inquiry.jpg" />
     <Content Include="Images\Inventory.jpg" />
     <Content Include="Images\Maintain Inventory.png" />
     <Content Include="Images\PurchaseOrder.jpg" />
@@ -287,6 +289,7 @@
     <Content Include="Views\Home\Sales.cshtml" />
     <Content Include="Views\Marketing\Company.cshtml" />
     <Content Include="Views\Marketing\Import.cshtml" />
+    <Content Include="Views\Clients\LogOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />

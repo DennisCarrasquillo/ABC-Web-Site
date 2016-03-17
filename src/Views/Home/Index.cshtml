@@ -5,12 +5,11 @@
 
 <div>
     <font size="3">
-       
-        <h2>BLS Inventory Management System</h2>
-        <p>An Inventory Management System designed specifically for the parts distributor.</p>
+       <br/><br/><br/><br/>
+        <p>A creative Inventory Management System designed specifically for the parts distributor.</p>
         <p>This Next Generation Inventory Management System is an Integrated Suite of Tools that will Enhance and Simplify your Parts Management Process.</p>
         <p>@Html.ActionLink("Sign Up", "RegisterView", "Clients") to try BLS Inventory Management for <b><font color="red">FREE!</font></b> using our quickstart demo database.</p>
-        <h3>BLS Inventory supports:</h3>
+        <h3 style="color: #ffffff; background-color: #004892">BLS Inventory supports:</h3>
         <ul>
             <li>
                 Fully customizable user access. User access to the various system components (ex. Purchasing, Sales, etc.) can be restricted at the detail level.
@@ -28,7 +27,7 @@
                 <br />
             </li>
             </ul>
-<p style="color: #000000; background-color: yellow">&nbsp;&nbsp;Inventory</p>
+<p style="color: #ffffff; background-color: #004892">&nbsp;&nbsp;Inventory</p>
    
     <table>
         <tr>
@@ -95,7 +94,7 @@
             </tr>
         </table>
         <br />
-<p style="color: #ffffff; background-color: darkgreen">&nbsp;&nbsp;Purchasing</p>
+<p style="color: #ffffff; background-color: #004892">&nbsp;&nbsp;Purchasing</p>
                 
                 <table>
                     <tr>
@@ -117,7 +116,7 @@
                     </tr>
                 </table>
                 <br />
-<p style="color: #000000; background-color: tomato">&nbsp;&nbsp;Sales</p>
+<p style="color: #ffffff; background-color: #004892">&nbsp;&nbsp;Sales</p>
                 
                 <table>
                     <tr>
@@ -140,38 +139,44 @@
 
 
 
-        <p>For more information call Customer Service:<img src="~/Images/cutomerservice.jpg" /> or @Html.ActionLink("Contact Us", "MailView", "Mail") via email.</p>
+        <p>For more information call Customer Service:<img src="~/Images/inquiry.jpg" /> or @Html.ActionLink("Contact Us", "MailView", "Mail") via email.</p>
         </font>
 </div>
 <div id="topRight">
-    Contact Us
+   <b> Contact Us</b>
+    <br/>
+    <img src="~/Images/inquiry.jpg" />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <table border="1">
+    <table border="1" style="background-color:rgba(255, 255, 255, 1);">
         <tr>
             <td>Name</td>
             <td>@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control" } })</td>
         </tr>
         <tr>
-            <td>Email
+            <td>
+                Email
             </td>
-            <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-        </tr>
-        <tr>
-            <td>Phone</td>
-            <td>@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-        </tr>
-        <tr>
-            <td>Comment</td>
-            <td>@Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-        </tr>
-        
-    </table>
+            <td>
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+        </td>
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td>
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+    </td>
+</tr>
+<tr>
+    <td>Comment</td>
+    <td>
+        @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+</td>
+</tr>
+
+</table>
     <input type="submit" value="Send Message" class="btn btn-default" /><br/>
-    <p>Or Call: <img src="~/Images/cutomerservice.jpg" /></p>
+  
 }
 </div>
