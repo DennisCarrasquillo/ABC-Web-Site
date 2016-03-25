@@ -36,7 +36,7 @@ namespace BLS_Inventory.Controllers
             Message += "Phone: " + ch.Phone + "\n\r";
             Message += "Email Addr: " + ch.Email + "\n\r";
             Message += "Message: " + ch.Comments + "\n\r";
-            Class_Gmail mail = new Class_Gmail(ch.Email, ch.BusinessName, "sales@blsinventory.com", "Customer Service", "ona1098@gmail.com", "Hamster22");
+            Class_Gmail mail = new Class_Gmail(ch.Email, ch.BusinessName, "sales@blsinventory.com", "Customer Service", "ona1098@gmail.com", "Feline22");
             mail.Subject = "Inquiry";
             mail.Body = Message;
             mail.Send();

@@ -218,7 +218,9 @@
     <Content Include="Files\ClientDB.sql" />
     <Content Include="Files\CreateDB.sql" />
     <Content Include="Files\DemoData.sql" />
+    <Content Include="Files\DemoViews.sql" />
     <Content Include="Files\dotNetFx45_Full_setup.exe" />
+    <Content Include="Files\ForeignKeys.sql" />
     <Content Include="Files\InventoryDB.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

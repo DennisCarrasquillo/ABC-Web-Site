@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,6 +12,7 @@ using BLS_Inventory;
 using BLS_Inventory.Models;
 using ClientDB;
 using System.Configuration;
+using System.Data.SqlClient;
 namespace BLS_Inventory.Controllers
 {
     public class ClientsController : Controller
@@ -296,30 +298,99 @@ namespace BLS_Inventory.Controllers
         }
         private bool Create_DataBase(string UserId, string Password)
         {
-            string createscript = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
-            string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
-            string dbdata = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\DemoData.sql"));
+            RunScript("CreateDB", UserId, Password, true);
+            RunScript("InventoryDB", UserId, Password, true);
+            RunScript("DemoViews", UserId, Password, false);
+            RunScript("DemoData", UserId, Password, false);
+            RunScript("ForeignKeys", UserId, Password, false);
+            //string createscript = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
+            //string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
+            //string dbviews = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\DemoViews.sql"));
+            //string dbdata = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\DemoData.sql"));
 
-            string dbname = "BLS" + UserId + "DB";
-            createscript = createscript.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
-            script = script.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
-            dbdata = dbdata.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            //string dbname = "BLS" + UserId + "DB";
+            //createscript = createscript.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            //script = script.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            //dbviews = dbviews.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+            //dbdata = dbdata.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
 
-            string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
-            CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
-            try
-            {
-                newDB.Execute(createscript);
-                newDB.Execute(script);
-                newDB.Execute(dbdata);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            newDB.Close();
+            //string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
+            //CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", cs);
+            //try
+            //{
+                //newDB.Execute(createscript);
+                //newDB.Execute(script);
+                //newDB.Execute(dbviews);
+            //    newDB.Execute(dbdata);
+            //}
+            //catch (Exception ex)
+            //{
+            //    newDB.Close();
+            //    return false;
+            //}
+            //newDB.Close();
 
             return true;
+        }
+        private void RunScript(string scriptname, string UserId, string Password, bool useMaster)
+        {
+            string dbname = "BLS" + UserId + "DB";
+            string catname;
+            string uid;
+            string pwd;
+            if (useMaster)
+            {
+                catname = "master";
+                uid = "demo";
+                pwd = "user";
+            }
+            else
+            {              
+                catname = dbname;
+                uid = UserId;
+                pwd = Password;
+            }
+            SqlConnectionStringBuilder connectionString = new SqlConnectionStringBuilder();
+            connectionString.DataSource = @"ona1098.ddns.net";
+            connectionString.InitialCatalog = catname;
+            connectionString.UserID = uid;
+            connectionString.Password = pwd;
+            connectionString.IntegratedSecurity = false;
+            //string cs = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
+            CATRAN_DATA.Database newDB = new CATRAN_DATA.Database("SQL", connectionString.ConnectionString);
+            string FilePath = HttpContext.Server.MapPath("\\files\\" + scriptname + ".sql");
+            System.IO.StreamReader file = new System.IO.StreamReader(FilePath);
+            string line;
+            bool run = true;
+            StringBuilder cmd = new StringBuilder("");
+            while (run)
+            {
+                line = file.ReadLine();
+                if (line != null)
+                    line = line.Replace("BLSInventory", dbname).Replace("&UserId", UserId).Replace("&Password", Password);
+                if ( line == null || line.StartsWith("GO") )
+                {
+                    try
+                    {
+                        if (cmd.ToString() != "")                          
+                            newDB.Execute(cmd.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        newDB.Close();
+                        return;
+                    }
+                    cmd = new StringBuilder("");
+                }
+                else
+                {
+                    cmd.AppendLine(line);
+                }
+                if (line == null)
+                    break;
+            }
+            newDB.Close();
+            return;
         }
 
         [HttpGet]
