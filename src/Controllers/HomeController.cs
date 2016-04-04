@@ -23,7 +23,7 @@ namespace BLS_Inventory.Controllers
             ContactHistory ch = new ContactHistory();
             Common.CopyProperties(cvm, ch, false);
             ch.ContactDate = DateTime.Now;
-            ch.BusinessName = cvm.ContactName;
+            ch.BusinessName = cvm.BusinessName;
             ch.Comments = cvm.Comments;
             ch.ContactName = "";
             ch.Phone = cvm.Phone;
@@ -33,6 +33,7 @@ namespace BLS_Inventory.Controllers
             Message += "Date:" + ch.ContactDate + "\n\r";
             //Message += "Business Name: " + ch.BusinessName + "\n\r";
             Message += "Contact Name: " + ch.ContactName + "\n\r";
+            Message += "Company Name: " + ch.BusinessName + "\n\r";
             Message += "Phone: " + ch.Phone + "\n\r";
             Message += "Email Addr: " + ch.Email + "\n\r";
             Message += "Message: " + ch.Comments + "\n\r";
@@ -42,6 +43,7 @@ namespace BLS_Inventory.Controllers
             mail.Send();
             db.SaveChanges();
             MailViewModel mvm = new MailViewModel();
+            mvm.Msg = "Message Sent";
             return View(mvm);
         }
         public ActionResult Inventory()

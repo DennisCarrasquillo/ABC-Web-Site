@@ -13,6 +13,7 @@ namespace BLS_Inventory.Models
          public string Phone { get; set; }
         public string Email { get; set; }
         public string Comments { get; set; }
+        public string Msg { get; set; }
 
     }
 }

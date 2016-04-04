@@ -33,14 +33,14 @@
         <tr>
             <td>             
                 <ul>
-                    <li>Manage In-house inventory, suppplier consignments, and/or supplier's excess inventory.</li>
+                    <li>Manage In-house inventory, supplier consignments, and/or supplier's excess inventory.</li>
                     <li>Categorize your inventory by two levels of category.</li>
-                    <li>Store Alternate and internal item numbers.</li>
+                    <li>Store alternate and internal item numbers.</li>
                     <li>Store SKU and NSN numbers.</li>
                     <li>View stock levels at a glance.</li>
-                    <li>Set Quantity sales pricing levels.</li>
+                    <li>Set quantity sales pricing levels.</li>
                     <li>Store and display item images.</li>
-                    <li>View and Edit quantities by source and type.</li>
+                    <li>View and edit quantities by source and type.</li>
                 </ul>
             </td>
             <td>
@@ -151,6 +151,10 @@
     @Html.AntiForgeryToken()
     <table border="1" style="background-color:rgba(255, 255, 255, 1);">
         <tr>
+            <td>Company</td>
+            <td>@Html.EditorFor(model => model.BusinessName, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
             <td>Name</td>
             <td>@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control" } })</td>
         </tr>
@@ -168,12 +172,14 @@
             @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
     </td>
 </tr>
-<tr>
-    <td>Comment</td>
-    <td>
-        @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
-</td>
-</tr>
+       <tr>
+            <td>Name</td>
+            <td>@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td colspan="2">@Html.TextBoxFor(m => m.Msg, new { @readonly = "readonly" })</td>
+        </tr>
+
 
 </table>
     <input type="submit" value="Send Message" class="btn btn-default" /><br/>
