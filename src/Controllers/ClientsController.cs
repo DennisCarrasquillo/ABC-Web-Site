@@ -67,6 +67,8 @@ namespace BLS_Inventory.Controllers
            {
                ViewBag.Title = "Register New Client";
                ViewBag.CompanyType = new SelectList(comptypes, "ID", "Name");
+               clientview.Purchasing = true;
+               clientview.Sales = true;
            }
             return View(clientview);
         }
@@ -146,9 +148,9 @@ namespace BLS_Inventory.Controllers
             Option opts;
             opts = (clientview.Id > 0) ? client.Options.FirstOrDefault() : new Option();
             opts.Item = true;
-            opts.Purchasing = clientview.Purchasing;
-            opts.Sales = clientview.Sales;
-            opts.Warehouse = clientview.Warehouse;
+            opts.Purchasing = true;
+            opts.Sales = true;
+            opts.Warehouse = false;
 
             if (clientview.Id > 0)
             {
@@ -168,20 +170,20 @@ namespace BLS_Inventory.Controllers
                 lic.SystemName = "BLSInventory";
                 lic.SubSystem = "Item";
                 client.Licenses.Add(lic);
-                if (clientview.Purchasing)
-                {
+                //if (clientview.Purchasing)
+                //{
                     License plic = new License();
                     lic.CopyPropertiesTo<License, License>(plic);
                     plic.SubSystem = "Purchasing";
                     client.Licenses.Add(plic);
-                }
-                if (clientview.Sales)
-                {
+                //}
+                //if (clientview.Sales)
+                //{
                     License slic = new License();
                     lic.CopyPropertiesTo<License, License>(slic);
                     slic.SubSystem = "Sales";
                     client.Licenses.Add(slic);
-                }
+                //}
                 if (clientview.Warehouse)
                 {
                     License wlic = new License();
@@ -287,8 +289,17 @@ namespace BLS_Inventory.Controllers
                 ModelState.AddModelError("", "Error Updating Information");
                 return View(userviewmodel);
             }
+            ActiveUser AU = new ActiveUser();
+            AU.ClientId = user.Client.Id;
+            AU.UserId = userviewmodel.UserID;
+            AU.Password = userviewmodel.User_Password;
+            //Contact contact = uinfo.Contacts.FirstOrDefault();
+            AU.UserName = contact.ContactName;
+
+            Session["ActiveUser"] = AU;
+            Session.Timeout = 120;
             bool ret = Create_DataBase(user.UserId, user.Password);
-            return RedirectToAction("Index", "Home");        
+            return RedirectToAction("Download", "Clients");        
         }
         public ActionResult DemoDB()
         {
@@ -302,7 +313,7 @@ namespace BLS_Inventory.Controllers
             RunScript("InventoryDB", UserId, Password, true);
             RunScript("DemoViews", UserId, Password, false);
             RunScript("DemoData", UserId, Password, false);
-            RunScript("ForeignKeys", UserId, Password, false);
+            //RunScript("ForeignKeys", UserId, Password, false);
             //string createscript = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\CreateDB.sql"));
             //string script = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\InventoryDB.sql"));
             //string dbviews = System.IO.File.ReadAllText(HttpContext.Server.MapPath("\\files\\DemoViews.sql"));

@@ -76,7 +76,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
                 }
                 @if (UserProps != null)
                 {
-                    if (UserProps.UserId == "dennis" || UserProps.UserId == "julie" || UserProps.UserId == "billw")
+                    if (UserProps.UserId == "dennis" || UserProps.UserId == "julie" )
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" id="dropdownCommonMenu" data-toggle="dropdown">Marketing</a>
@@ -84,6 +84,7 @@ j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; 
                                 <li role="menuitem">@Html.ActionLink("Import Contacts", "Import", "Marketing")</li>
                                 <li role="menuitem">@Html.ActionLink("Edit Contacts", "Company", "Marketing")</li>
                                 <li role="menuitem">@Html.ActionLink("Create Mailing List", "Mailing", "Marketing")</li>
+                                <li role="menuitem">@Html.ActionLink("View Mailer", "M160417", "Marketing")</li>                              
                             </ul>
                         </li>
                     }

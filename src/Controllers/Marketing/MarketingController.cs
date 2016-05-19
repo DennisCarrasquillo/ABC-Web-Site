@@ -20,6 +20,10 @@ namespace BLS_Inventory.Controllers.Marketing
         {
             return View();
         }
+        public ActionResult M160417()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase file)
         {
@@ -65,6 +69,22 @@ namespace BLS_Inventory.Controllers.Marketing
         
             _fileImport.FilePath = path;
             string Extension = fileName.Split('.')[1];
+            string fn = fileName.Split('.')[0];
+            string fsc = null;
+            string naics = null;
+            string[] fparts = fn.Split(' ');
+            FSCCodes fsccodes = null;
+            NAICSCodes naicscodes = null;
+            if (fparts[0] == "FSC")
+            {
+                fsc = fparts[1];
+                fsccodes = db.FSCCodes.Where(f => f.FDCCode == fsc).FirstOrDefault();
+            }
+            else
+            {
+                naics = fparts[0];
+                naicscodes = db.NAICSCodes.Where(n => n.NAICSCode == naics).FirstOrDefault();
+            }
             System.Data.DataTable dtBulk = null;
             switch (Extension)
             {
@@ -118,6 +138,10 @@ namespace BLS_Inventory.Controllers.Marketing
                 {
                     compadded += 1;
                     company = new Companies();
+                    if (fsc != null)
+                        company.FSCCodes.Add(fsccodes);
+                    if (naics != null)
+                        company.NAICSCodes.Add(naicscodes);
                     db.Companies.Add(company);
                 }
                 else
@@ -132,8 +156,11 @@ namespace BLS_Inventory.Controllers.Marketing
                     company.Contacts.Add(contact);
                 }
                 else
+                {
                     contdupl += 1;
+                }
                 contact.Name = row.ItemArray[0].ToString();
+                Fix_Name(contact);
                 contact.email = row.ItemArray[1].ToString();
                 company.Cage = row.ItemArray[2].ToString();
                 company.CompanyName = row.ItemArray[3].ToString();
@@ -154,6 +181,39 @@ namespace BLS_Inventory.Controllers.Marketing
             im.ContactsDuplicated = contdupl;
             im.ContactsImported = contadded;
             return im;
+        }
+        private void Fix_Name(Contacts cont)
+        {
+            if (cont.FirstName != null)
+                return;
+            int fn = 0;
+            int ln = 1;
+            string fname = "";
+            string lname = "";
+            string[] nps = cont.Name.Split(' ');
+            List<string> newname = new List<string>();
+            foreach (string name in nps)
+            {
+                string n = "";
+                string nn = name.Replace(".", "");
+                if (nn.Length == 1)
+                    continue;
+                else
+                    n = name.Substring(0, 1) + name.Substring(1).ToLower();
+                newname.Add(n);
+            }
+            if (newname.Count == 0)
+                return;
+            fname = newname[0];
+            for (int i = 1; i < newname.Count; i++)
+            {
+                lname += newname[i] + " ";
+            }
+            cont.FirstName = fname;
+            if (lname.Length > 199)
+                lname = lname.Substring(0, 199);
+            cont.LastName = lname;
+
         }
     }
 }

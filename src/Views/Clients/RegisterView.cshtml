@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.Label("Purchasing", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.CheckBoxFor(model => model.Purchasing)              
@@ -68,20 +68,20 @@
             <div class="col-md-10">
                 @Html.CheckBoxFor(model => model.Sales)
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.Label("Warehouse", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.CheckBoxFor(model => model.Warehouse)
             </div>
-        </div>
+        </div>*@
 
         @Html.Partial("_Address",  Model)
        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Continue >>" class="btn btn-default" />
+                <input type="submit" value="Continue to become a user >>" class="btn btn-default" />
             </div>
         </div>
 
